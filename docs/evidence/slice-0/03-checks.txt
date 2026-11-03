@@ -1,0 +1,87 @@
+### npm ci
+npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 451 packages, and audited 458 packages in 27s
+
+166 packages are looking for funding
+  run `npm fund` for details
+
+16 moderate severity vulnerabilities
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+exit=0
+### npm run lint
+
+> pak-mud@0.1.0 lint
+> eslint .
+
+exit=0
+### npm run typecheck
+
+> pak-mud@0.1.0 typecheck
+> tsc --noEmit
+
+exit=0
+### npm test
+
+> pak-mud@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /home/user/pak-mud
+
+
+ Test Files  2 passed (2)
+      Tests  6 passed (6)
+   Start at  08:27:06
+   Duration  1.40s (environment 70%, setup 16%, tests 7%, transform 5%, import 1%, worker 1%)
+
+exit=0
+### npm run build
+
+> pak-mud@0.1.0 build
+> next build
+
+▲ Next.js 16.4.4 (Turbopack)
+✓ Running next.config.ts took 50ms
+- Cache Components enabled
+- Partial Prefetching enabled
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 510ms
+  Running TypeScript ...
+  Finished TypeScript in 2.4s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/4) ...
+  Generating static pages using 3 workers (1/4) 
+  Generating static pages using 3 workers (2/4) 
+  Generating static pages using 3 workers (3/4) 
+✓ Generating static pages using 3 workers (4/4) in 301ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+exit=0
+### npm run test:e2e
+
+> pak-mud@0.1.0 test:e2e
+> playwright test
+
+
+Running 1 test using 1 worker
+
+  ✓  1 [chromium] › e2e/home.spec.ts:3:5 › home page introduces Pak Mud (1.3s)
+
+  1 passed (7.4s)
+exit=0

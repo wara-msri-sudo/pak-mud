@@ -1,0 +1,4 @@
+readiness=200
+desktop-light title= Pak Mud h1= Pak Mud horizontalOverflow= false
+desktop-dark title= Pak Mud h1= Pak Mud horizontalOverflow= false
+phone-375 title= Pak Mud h1= Pak Mud horizontalOverflow= false

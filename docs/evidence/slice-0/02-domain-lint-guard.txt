@@ -1,0 +1,9 @@
+
+/home/user/pak-mud/src/features/trip/domain/__lint_probe__.ts
+  1:1   error  'react' import is restricted from being used by a pattern. Domain code must not depend on React or Next.js            no-restricted-imports
+  2:1   error  '../adapters/thing' import is restricted from being used by a pattern. Domain code must not import from outer layers  no-restricted-imports
+  3:46  error  Unexpected use of 'localStorage'. Domain code must not use browser APIs. Use a port instead                           no-restricted-globals
+
+✖ 3 problems (3 errors, 0 warnings)
+
+exit=1

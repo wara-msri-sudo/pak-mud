@@ -1,0 +1,244 @@
+
+ RUN  v5.1.0 /home/user/pak-mud
+
+ ❯ src/features/trip/domain/countTripDays.test.ts (0 test)
+ ❯ src/app/page.test.tsx (1 test | 1 failed) 201ms
+   ❯ Home page (1)
+     × shows the Pak Mud heading and tagline 199ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/trip/domain/countTripDays.test.ts [ src/features/trip/domain/countTripDays.test.ts ]
+Error: Failed to resolve import "./countTripDays" from "src/features/trip/domain/countTripDays.test.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/user/pak-mud/src/features/trip/domain/countTripDays.test.ts:2:30
+  1  |  import { describe, expect, it } from "vitest";
+  2  |  import { countTripDays } from "./countTripDays";
+     |                                 ^
+  3  |  describe("countTripDays", () => {
+  4  |  	it("counts a single-day trip as one day", () => {
+ ❯ TransformPluginContext._formatLog node_modules/vite/dist/node/chunks/node.js:8803:39
+ ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/node.js:8800:14
+ ❯ resolveId node_modules/vite/dist/node/chunks/node.js:26594:18
+ ❯ node_modules/vite/dist/node/chunks/node.js:26693:23
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/node.js:26666:4
+ ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/node.js:8582:14
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/node.js:20155:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/app/page.test.tsx > Home page > shows the Pak Mud heading and tagline
+TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Pak Mud"
+
+Here are the accessible roles:
+
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  img:
+
+  Name "Next.js logo":
+  [36m<img[39m
+    [33malt[39m=[32m"Next.js logo"[39m
+    [33mclass[39m=[32m"dark:invert h-5 w-[100px]"[39m
+    [33mdata-nimg[39m=[32m"1"[39m
+    [33mdecoding[39m=[32m"async"[39m
+    [33mheight[39m=[32m"20"[39m
+    [33msrc[39m=[32m"/next.svg"[39m
+    [33mstyle[39m=[32m"color: transparent;"[39m
+    [33mwidth[39m=[32m"100"[39m
+  [36m/>[39m
+
+  Name "Vercel logomark":
+  [36m<img[39m
+    [33malt[39m=[32m"Vercel logomark"[39m
+    [33mclass[39m=[32m"dark:invert h-[14px] w-4"[39m
+    [33mdata-nimg[39m=[32m"1"[39m
+    [33mdecoding[39m=[32m"async"[39m
+    [33mheight[39m=[32m"14"[39m
+    [33mloading[39m=[32m"lazy"[39m
+    [33msrc[39m=[32m"/vercel.svg"[39m
+    [33mstyle[39m=[32m"color: transparent;"[39m
+    [33mwidth[39m=[32m"16"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "To get started, edit the page.tsx file.":
+  [36m<h1[39m
+    [33mclass[39m=[32m"max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  code:
+
+  Name "":
+  [36m<code[39m
+    [33mclass[39m=[32m"rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "Templates":
+  [36m<a[39m
+    [33mclass[39m=[32m"font-medium text-zinc-950 dark:text-zinc-50"[39m
+    [33mhref[39m=[32m"https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"[39m
+  [36m/>[39m
+
+  Name "Learning":
+  [36m<a[39m
+    [33mclass[39m=[32m"font-medium text-zinc-950 dark:text-zinc-50"[39m
+    [33mhref[39m=[32m"https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"[39m
+  [36m/>[39m
+
+  Name "Vercel logomarkDeploy Now":
+  [36m<a[39m
+    [33mclass[39m=[32m"flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"[39m
+    [33mhref[39m=[32m"https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"[39m
+    [33mrel[39m=[32m"noopener noreferrer"[39m
+    [33mtarget[39m=[32m"_blank"[39m
+  [36m/>[39m
+
+  Name "Documentation":
+  [36m<a[39m
+    [33mclass[39m=[32m"flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"[39m
+    [33mhref[39m=[32m"https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"[39m
+    [33mrel[39m=[32m"noopener noreferrer"[39m
+    [33mtarget[39m=[32m"_blank"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black"[39m
+    [36m>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start"[39m
+      [36m>[39m
+        [36m<img[39m
+          [33malt[39m=[32m"Next.js logo"[39m
+          [33mclass[39m=[32m"dark:invert h-5 w-[100px]"[39m
+          [33mdata-nimg[39m=[32m"1"[39m
+          [33mdecoding[39m=[32m"async"[39m
+          [33mheight[39m=[32m"20"[39m
+          [33msrc[39m=[32m"/next.svg"[39m
+          [33mstyle[39m=[32m"color: transparent;"[39m
+          [33mwidth[39m=[32m"100"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col items-center gap-6 text-center sm:items-start sm:text-left"[39m
+        [36m>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50"[39m
+          [36m>[39m
+            [0mTo get started, edit the[0m
+            [0m [0m
+            [36m<code[39m
+              [33mclass[39m=[32m"rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]"[39m
+            [36m>[39m
+              [0mpage.tsx[0m
+            [36m</code>[39m
+            [0m [0m
+            [0mfile.[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400"[39m
+          [36m>[39m
+            [0mLooking for a starting point or more instructions? Head over to[0m
+            [0m [0m
+            [36m<a[39m
+              [33mclass[39m=[32m"font-medium text-zinc-950 dark:text-zinc-50"[39m
+              [33mhref[39m=[32m"https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"[39m
+            [36m>[39m
+              [0mTemplates[0m
+            [36m</a>[39m
+            [0m [0m
+            [0mor the[0m
+            [0m [0m
+            [36m<a[39m
+              [33mclass[39m=[32m"font-medium text-zinc-950 dark:text-zinc-50"[39m
+              [33mhref[39m=[32m"https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"[39m
+            [36m>[39m
+              [0mLearning[0m
+            [36m</a>[39m
+            [0m [0m
+            [0mcenter.[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-4 text-base font-medium sm:flex-row"[39m
+        [36m>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"[39m
+            [33mhref[39m=[32m"https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"[39m
+            [33mrel[39m=[32m"noopener noreferrer"[39m
+            [33mtarget[39m=[32m"_blank"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Vercel logomark"[39m
+              [33mclass[39m=[32m"dark:invert h-[14px] w-4"[39m
+              [33mdata-nimg[39m=[32m"1"[39m
+              [33mdecoding[39m=[32m"async"[39m
+              [33mheight[39m=[32m"14"[39m
+              [33mloading[39m=[32m"lazy"[39m
+              [33msrc[39m=[32m"/vercel.svg"[39m
+              [33mstyle[39m=[32m"color: transparent;"[39m
+              [33mwidth[39m=[32m"16"[39m
+            [36m/>[39m
+            [0mDeploy Now[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"[39m
+            [33mhref[39m=[32m"https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"[39m
+            [33mrel[39m=[32m"noopener noreferrer"[39m
+            [33mtarget[39m=[32m"_blank"[39m
+          [36m>[39m
+            [0mDocumentation[0m
+          [36m</a>[39m
+        [36m</div>[39m
+      [36m</main>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/app/page.test.tsx:10:14
+      8|
+      9|     expect(
+     10|       screen.getByRole("heading", { level: 1, name: "Pak Mud" }),
+       |              ^
+     11|     ).toBeInTheDocument();
+     12|     expect(screen.getByText("Plan your Thailand trip")).toBeInTheDocum…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  1 failed (1)
+   Start at  08:24:44
+   Duration  1.36s (environment 74%, setup 14%, tests 9%, transform 2%, import 1%)
+
+exit=1
