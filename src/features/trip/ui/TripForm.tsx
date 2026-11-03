@@ -65,7 +65,7 @@ export function TripForm({ repository, clock, onCreated }: TripFormProps) {
   return (
     <form noValidate onSubmit={handleSubmit} className="flex flex-col gap-5">
       {saveProblem && (
-        <p role="alert" className="rounded-lg border border-danger/40 bg-danger/10 p-4">
+        <p role="alert" className="rounded-xl border border-danger p-4">
           {saveProblem}
         </p>
       )}
@@ -101,7 +101,7 @@ export function TripForm({ repository, clock, onCreated }: TripFormProps) {
         <button type="submit" disabled={isSaving} className="button-primary">
           Create trip
         </button>
-        <Link href="/trips" className="text-muted underline-offset-4 hover:underline">
+        <Link href="/trips" className="link">
           Cancel
         </Link>
       </div>

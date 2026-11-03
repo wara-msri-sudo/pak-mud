@@ -57,3 +57,12 @@ test("corrupt saved data shows a notice instead of crashing", async ({ page }) =
   await expect(page.getByRole("heading", { name: "Your trips" })).toBeVisible();
   await expect(page.getByRole("main").getByRole("alert")).toContainText("We couldn't read your saved trips.");
 });
+
+test("the header band offers a new trip and a way back", async ({ page }) => {
+  await page.goto("/trips");
+  await page.getByRole("banner").getByRole("link", { name: "New trip" }).click();
+  await expect(page).toHaveURL("/trips/new");
+
+  await page.getByRole("link", { name: "Back to trips" }).click();
+  await expect(page).toHaveURL("/trips");
+});

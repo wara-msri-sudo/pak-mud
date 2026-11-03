@@ -1,0 +1,79 @@
+commit=cfbd23c
+### npm run lint
+
+> pak-mud@0.1.0 lint
+> eslint .
+
+exit=0
+### npm run typecheck
+
+> pak-mud@0.1.0 typecheck
+> tsc --noEmit
+
+exit=0
+### npm test
+
+> pak-mud@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /home/user/pak-mud
+
+
+ Test Files  9 passed (9)
+      Tests  49 passed (49)
+   Start at  10:09:57
+   Duration  6.86s (environment 70%, setup 13%, import 8%, tests 7%, transform 2%)
+
+Environment  jsdom was created 9 times · 12.88s total, 70% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+
+exit=0
+### npm run build
+
+> pak-mud@0.1.0 build
+> next build
+
+▲ Next.js 16.4.4 (Turbopack)
+✓ Running next.config.ts took 4.2s
+- Cache Components enabled
+- Partial Prefetching enabled
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 10.0s
+  Running TypeScript ...
+  Finished TypeScript in 3.8s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/6) ...
+  Generating static pages using 3 workers (1/6) 
+  Generating static pages using 3 workers (2/6) 
+  Generating static pages using 3 workers (4/6) 
+✓ Generating static pages using 3 workers (6/6) in 528ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /trips
+└ ○ /trips/new
+
+
+○  (Static)  prerendered as static content
+
+exit=0
+### npm run test:e2e
+
+> pak-mud@0.1.0 test:e2e
+> playwright test
+
+
+Running 4 tests using 2 workers
+
+  ✓  2 [chromium] › e2e/home.spec.ts:3:5 › home page introduces Pak Mud (2.3s)
+  ✓  3 [chromium] › e2e/trips.spec.ts:38:5 › an invalid form shows errors and saves nothing (3.4s)
+  ✓  1 [chromium] › e2e/trips.spec.ts:17:5 › a visitor creates trips and still sees them after a reload (6.9s)
+  ✓  4 [chromium] › e2e/trips.spec.ts:51:5 › corrupt saved data shows a notice instead of crashing (1.6s)
+
+  4 passed (17.3s)
+exit=0

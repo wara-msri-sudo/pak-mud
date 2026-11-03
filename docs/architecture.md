@@ -4,7 +4,7 @@ Current state of Pak Mud. Keep this file matching the code. Decisions live in [d
 
 ## Stack
 - Next.js 16 (App Router), React 19, TypeScript (strict)
-- Tailwind CSS 4
+- Tailwind CSS 4, theme E3 · Slate-led ([0005](decisions/0005-visual-theme-e3.md)): tokens only in `src/app/globals.css`
 - Vitest + Testing Library (unit and component), Playwright (e2e)
 - Storage: browser localStorage ([0002](decisions/0002-browser-storage-for-mvp.md))
 - Maps: OpenStreetMap ([0003](decisions/0003-openstreetmap-for-maps.md))
@@ -15,7 +15,7 @@ Current state of Pak Mud. Keep this file matching the code. Decisions live in [d
 | Domain (entities, rules) | `src/features/<feature>/domain/` | other domain code only |
 | Application (use cases, ports) | `src/features/<feature>/application/` | domain |
 | Adapters (localStorage, OSM, routing) | `src/features/<feature>/adapters/` | application, domain |
-| UI + framework | `src/features/<feature>/ui/`, `src/app/` | everything above |
+| UI + framework | `src/features/<feature>/ui/`, `src/app/`, `src/components/` (shared app chrome such as `AppHeader`) | everything above |
 
 Dependencies point inward only. ESLint enforces the domain rule: files under `domain/` cannot
 import React, Next.js or outer layers, or use browser globals (`eslint.config.mjs`).
@@ -40,7 +40,7 @@ import React, Next.js or outer layers, or use browser globals (`eslint.config.mj
 | `/trips` | `src/app/trips/page.tsx` | `TripList` (client) |
 | `/trips/new` | `src/app/trips/new/page.tsx` | `NewTripForm` -> `TripForm` (client) |
 
-Pages are server components that only lay out the page. Client components load data in the browser,
+Every page starts with `AppHeader` (the slate band). Pages are server components that only lay out the page. Client components load data in the browser,
 because localStorage only exists there. `adapters/browserTrips.ts` wires the real repository, plus a clock
 that supplies UUID ids (`generateTripId`: `randomUUID`, or random bytes on plain-HTTP pages) and the current time.
 

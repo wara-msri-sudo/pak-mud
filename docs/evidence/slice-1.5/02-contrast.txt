@@ -1,0 +1,57 @@
+
+ RUN  v5.1.0 /home/user/pak-mud
+
+ ✓ src/app/theme.test.ts > light theme contrast > foreground on background meets 4.5:1 (body text) 3ms
+ ✓ src/app/theme.test.ts > light theme contrast > foreground on card meets 4.5:1 (card text) 1ms
+ ✓ src/app/theme.test.ts > light theme contrast > foreground on surface meets 4.5:1 (quiet panel text) 1ms
+ ✓ src/app/theme.test.ts > light theme contrast > muted on background meets 4.5:1 (secondary text) 1ms
+ ✓ src/app/theme.test.ts > light theme contrast > muted on card meets 4.5:1 (secondary text on cards) 0ms
+ ✓ src/app/theme.test.ts > light theme contrast > accent on background meets 4.5:1 (links) 0ms
+ ✓ src/app/theme.test.ts > light theme contrast > accent on card meets 4.5:1 (links on cards) 0ms
+ ✓ src/app/theme.test.ts > light theme contrast > accent-foreground on accent meets 4.5:1 (slate button label) 0ms
+ ✓ src/app/theme.test.ts > light theme contrast > danger on background meets 4.5:1 (field errors) 1ms
+ ✓ src/app/theme.test.ts > light theme contrast > danger on card meets 4.5:1 (errors on cards) 0ms
+ ✓ src/app/theme.test.ts > light theme contrast > band-foreground on band meets 4.5:1 (band title) 0ms
+ ✓ src/app/theme.test.ts > light theme contrast > band-muted on band meets 4.5:1 (band subtitle) 0ms
+ ✓ src/app/theme.test.ts > light theme contrast > band-cta-foreground on band-cta meets 4.5:1 (tan button label) 0ms
+ ✓ src/app/theme.test.ts > light theme contrast > band-cta on band meets 3:1 (logo and band focus ring) 0ms
+ ✓ src/app/theme.test.ts > light theme contrast > accent on background meets 3:1 (focus ring) 0ms
+ ✓ src/app/theme.test.ts > dark theme contrast > foreground on background meets 4.5:1 (body text) 0ms
+ ✓ src/app/theme.test.ts > dark theme contrast > foreground on card meets 4.5:1 (card text) 0ms
+ ✓ src/app/theme.test.ts > dark theme contrast > foreground on surface meets 4.5:1 (quiet panel text) 0ms
+ ✓ src/app/theme.test.ts > dark theme contrast > muted on background meets 4.5:1 (secondary text) 0ms
+ ✓ src/app/theme.test.ts > dark theme contrast > muted on card meets 4.5:1 (secondary text on cards) 0ms
+ ✓ src/app/theme.test.ts > dark theme contrast > accent on background meets 4.5:1 (links) 0ms
+ ✓ src/app/theme.test.ts > dark theme contrast > accent on card meets 4.5:1 (links on cards) 0ms
+ ✓ src/app/theme.test.ts > dark theme contrast > accent-foreground on accent meets 4.5:1 (slate button label) 0ms
+ ✓ src/app/theme.test.ts > dark theme contrast > danger on background meets 4.5:1 (field errors) 0ms
+ ✓ src/app/theme.test.ts > dark theme contrast > danger on card meets 4.5:1 (errors on cards) 0ms
+ ✓ src/app/theme.test.ts > dark theme contrast > band-foreground on band meets 4.5:1 (band title) 0ms
+ ✓ src/app/theme.test.ts > dark theme contrast > band-muted on band meets 4.5:1 (band subtitle) 0ms
+ ✓ src/app/theme.test.ts > dark theme contrast > band-cta-foreground on band-cta meets 4.5:1 (tan button label) 0ms
+ ✓ src/app/theme.test.ts > dark theme contrast > band-cta on band meets 3:1 (logo and band focus ring) 0ms
+ ✓ src/app/theme.test.ts > dark theme contrast > accent on background meets 3:1 (focus ring) 0ms
+ ✓ src/app/theme.test.ts > theme tokens > defines every colour in globals.css only 2ms
+ ✓ src/app/theme.test.ts > theme tokens > defines the same tokens for light and dark 0ms
+
+ Test Files  1 passed (1)
+      Tests  32 passed (32)
+   Start at  10:14:05
+   Duration  1.15s (environment 76%, setup 18%, transform 4%, tests 1%, import 1%, worker 1%)
+
+exit=0
+pair                               light   dark
+foreground on background           16.45  13.76
+foreground on card                 17.68  11.02
+foreground on surface              15.11  12.10
+muted on background                 6.66   8.22
+muted on card                       7.16   6.58
+accent on background               12.18  11.11
+accent on card                     13.09   8.89
+accent-foreground on accent        13.09  11.11
+danger on background                6.02   6.66
+danger on card                      6.47   5.33
+band-foreground on band            12.18   9.78
+band-muted on band                  7.89   5.84
+band-cta-foreground on band-cta     9.19   8.51
+band-cta on band                    6.04   6.04

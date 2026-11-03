@@ -1,40 +1,62 @@
 @import "tailwindcss";
 
+/* Palette "E3 · Slate-led" (decision 0005). Only this file defines colours. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --muted: #52525b;
-  --line: #d4d4d8;
-  --accent: #0f766e;
-  --accent-hover: #115e59;
-  --on-accent: #ffffff;
+  color-scheme: light;
+  --background: #f5f7f8;
+  --surface: #e9eef0;
+  --card: #ffffff;
+  --foreground: #0f1a1f;
+  --muted: #4b5a61;
+  --border: #dce3e6;
+  --accent: #22333b;
+  --accent-foreground: #ffffff;
   --danger: #b91c1c;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-line: var(--line);
-  --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
-  --color-on-accent: var(--on-accent);
-  --color-danger: var(--danger);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --band: #22333b;
+  --band-foreground: #f5f7f8;
+  --band-muted: #b9ccd5;
+  --band-cta: #c6ac8f;
+  --band-cta-foreground: #0a0908;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --muted: #a1a1aa;
-    --line: #3f3f46;
-    --accent: #2dd4bf;
-    --accent-hover: #5eead4;
-    --on-accent: #042f2e;
+    /* Native controls (date picker icon, scrollbars) follow the dark theme too. */
+    color-scheme: dark;
+    --background: #0e1519;
+    --surface: #16222a;
+    --card: #1b2a32;
+    --foreground: #d8e0e3;
+    --muted: #9fb0b7;
+    --border: #2c3d46;
+    --accent: #b9ccd5;
+    --accent-foreground: #0e1519;
     --danger: #f87171;
+    --band: #22333b;
+    --band-foreground: #d8e0e3;
+    --band-muted: #9fb0b7;
+    --band-cta: #c6ac8f;
+    --band-cta-foreground: #0e1519;
   }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-danger: var(--danger);
+  --color-band: var(--band);
+  --color-band-foreground: var(--band-foreground);
+  --color-band-muted: var(--band-muted);
+  --color-band-cta: var(--band-cta);
+  --color-band-cta-foreground: var(--band-cta-foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 body {
@@ -43,15 +65,33 @@ body {
 }
 
 @layer components {
+  /* The one filled action on the page. */
   .button-primary {
-    @apply inline-flex min-h-11 items-center justify-center rounded-full bg-accent px-5 font-medium text-on-accent transition-colors hover:bg-accent-hover disabled:opacity-60;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-[10px] bg-accent px-5 font-medium text-accent-foreground transition-opacity hover:opacity-90 disabled:opacity-60;
+  }
+
+  /* The one filled action on the header band. Tan is only used on the band. */
+  .button-band {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-[10px] bg-band-cta px-4 font-medium text-band-cta-foreground transition-opacity hover:opacity-90;
+  }
+
+  .card {
+    @apply rounded-xl border border-border bg-card p-4;
   }
 
   .field-input {
-    @apply min-h-11 w-full rounded-lg border border-line bg-background px-3 text-foreground aria-invalid:border-danger;
+    @apply min-h-11 w-full rounded-[10px] border border-border bg-card px-3 text-foreground aria-invalid:border-danger;
+  }
+
+  .link {
+    @apply text-accent underline underline-offset-3;
   }
 
   :where(a, button, input):focus-visible {
     @apply outline-2 outline-offset-2 outline-accent;
+  }
+
+  .band :where(a, button):focus-visible {
+    @apply outline-band-cta;
   }
 }

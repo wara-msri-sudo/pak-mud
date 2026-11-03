@@ -13,6 +13,7 @@ Next.js agent notes: @AGENTS.md
 4. Ask before adding a dependency, changing the stored data shape, or calling a new external service.
 5. Never weaken tests, lint rules or TypeScript strictness to get a pass.
 6. Every slice ships with tests, evidence under `docs/evidence/<slice>/`, and updated docs.
+7. Colours come only from tokens in `src/app/globals.css` (decision 0005). `src/app/theme.test.ts` enforces contrast and the no-hex rule.
 
 # Project adapter
 
@@ -45,6 +46,7 @@ Next.js agent notes: @AGENTS.md
 ## Extra Definition of Done items
 - The page works at phone width (375px) with no horizontal scroll.
 - Map pages show OpenStreetMap attribution.
+- Pages start with `AppHeader`, use one filled primary per area, and look right in light and dark mode.
 
 ## Performance budgets
 - First-load JS per route: at most 200 kB (checked from Slice 1 on).

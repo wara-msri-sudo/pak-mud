@@ -5,7 +5,7 @@ test("home page introduces Pak Mud", async ({ page }) => {
 
   await expect(page).toHaveTitle("Pak Mud");
   await expect(
-    page.getByRole("heading", { level: 1, name: "Pak Mud" }),
+    page.getByRole("heading", { level: 1, name: "Plan your Thailand trip" }),
   ).toBeVisible();
-  await expect(page.getByText("Plan your Thailand trip")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Pak Mud" })).toBeVisible();
 });
