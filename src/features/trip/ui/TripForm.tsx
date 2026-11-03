@@ -11,6 +11,8 @@ import {
   type TripField,
   type TripValidationErrors,
 } from "../domain/trip";
+import { DateField } from "./DateField";
+import { parseDayMonthYear } from "./dayMonthYear";
 import { storageProblemMessage } from "./storageProblemMessage";
 
 type TripFormProps = {
@@ -19,23 +21,26 @@ type TripFormProps = {
   onCreated: (trip: Trip) => void;
 };
 
-type FieldConfig = { field: TripField; label: string; type: "text" | "date"; autoComplete?: string };
+const TEXT_FIELDS = [
+  { field: "name", label: "Trip name" },
+  { field: "destination", label: "Destination" },
+] as const;
 
-const FIELDS: readonly FieldConfig[] = [
-  { field: "name", label: "Trip name", type: "text", autoComplete: "off" },
-  { field: "destination", label: "Destination", type: "text", autoComplete: "off" },
-  { field: "startDate", label: "Start date", type: "date" },
-  { field: "endDate", label: "End date", type: "date" },
-];
+const DATE_FIELDS = [
+  { field: "startDate", label: "Start date" },
+  { field: "endDate", label: "End date" },
+] as const;
 
+/** Dates are typed as dd/mm/yyyy; the domain receives ISO dates, or the raw text so it reports the error. */
 function readDraft(form: HTMLFormElement): TripDraft {
   const data = new FormData(form);
   const text = (field: TripField) => String(data.get(field) ?? "");
+  const isoDate = (field: TripField) => parseDayMonthYear(text(field)) ?? text(field);
   return {
     name: text("name"),
     destination: text("destination"),
-    startDate: text("startDate"),
-    endDate: text("endDate"),
+    startDate: isoDate("startDate"),
+    endDate: isoDate("endDate"),
   };
 }
 
@@ -70,20 +75,20 @@ export function TripForm({ repository, clock, onCreated }: TripFormProps) {
         </p>
       )}
       <div className="grid gap-5 sm:grid-cols-2">
-        {FIELDS.map(({ field, label, type, autoComplete }) => {
+        {TEXT_FIELDS.map(({ field, label }) => {
           const error = errors[field];
           const errorId = `${field}-error`;
           return (
-            <div key={field} className={`flex flex-col gap-1.5 ${type === "text" ? "sm:col-span-2" : ""}`}>
+            <div key={field} className="flex flex-col gap-1.5 sm:col-span-2">
               <label htmlFor={field} className="font-medium">
                 {label}
               </label>
               <input
                 id={field}
                 name={field}
-                type={type}
-                autoComplete={autoComplete}
-                maxLength={type === "text" ? TRIP_TEXT_MAX_LENGTH : undefined}
+                type="text"
+                autoComplete="off"
+                maxLength={TRIP_TEXT_MAX_LENGTH}
                 aria-invalid={error ? true : undefined}
                 aria-describedby={error ? errorId : undefined}
                 className="field-input"
@@ -96,6 +101,9 @@ export function TripForm({ repository, clock, onCreated }: TripFormProps) {
             </div>
           );
         })}
+        {DATE_FIELDS.map(({ field, label }) => (
+          <DateField key={field} name={field} label={label} error={errors[field]} />
+        ))}
       </div>
       <div className="flex flex-wrap items-center gap-4">
         <button type="submit" disabled={isSaving} className="button-primary">

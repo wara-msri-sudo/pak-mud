@@ -1,0 +1,1 @@
+baseline commit=94b7920 (verified in docs/evidence/slice-1.5/04-final.txt: lint, typecheck, 84 unit, build, 5 e2e all exit 0)

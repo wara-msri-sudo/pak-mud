@@ -38,7 +38,7 @@ import React, Next.js or outer layers, or use browser globals (`eslint.config.mj
 |---|---|---|
 | `/` | `src/app/page.tsx` | link to `/trips` |
 | `/trips` | `src/app/trips/page.tsx` | `TripList` (client) |
-| `/trips/new` | `src/app/trips/new/page.tsx` | `NewTripForm` -> `TripForm` (client) |
+| `/trips/new` | `src/app/trips/new/page.tsx` | `NewTripForm` -> `TripForm` -> `DateField` (client; dd/mm/yyyy text plus the browser calendar) |
 
 Every page starts with `AppHeader` (the slate band). Pages are server components that only lay out the page. Client components load data in the browser,
 because localStorage only exists there. `adapters/browserTrips.ts` wires the real repository, plus a clock

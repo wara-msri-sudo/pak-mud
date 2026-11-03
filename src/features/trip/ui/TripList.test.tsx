@@ -42,8 +42,8 @@ describe("TripList", () => {
 
     const items = await screen.findAllByRole("listitem");
     expect(items.map((item) => item.textContent)).toEqual([
-      "Northern loopChiang Mai1–5 Dec 2026 · 5 days",
-      "IslandsKrabi10–14 Jan 2027 · 5 days",
+      "Northern loopChiang Mai01/12/2026 – 05/12/2026 · 5 days",
+      "IslandsKrabi10/01/2027 – 14/01/2027 · 5 days",
     ]);
     // The "New trip" action lives on the page header band, not in the list.
     expect(screen.queryByRole("link", { name: "New trip" })).not.toBeInTheDocument();

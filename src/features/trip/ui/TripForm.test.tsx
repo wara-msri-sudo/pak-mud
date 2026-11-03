@@ -23,7 +23,7 @@ describe("TripForm", () => {
     const onCreated = vi.fn();
     render(<TripForm repository={repository} clock={clock} onCreated={onCreated} />);
 
-    fillForm({ name: "Northern loop", destination: "Chiang Mai", startDate: "2026-12-01", endDate: "2026-12-05" });
+    fillForm({ name: "Northern loop", destination: "Chiang Mai", startDate: "01/12/2026", endDate: "05/12/2026" });
     submit();
 
     await vi.waitFor(() => expect(onCreated).toHaveBeenCalledOnce());
@@ -44,7 +44,7 @@ describe("TripForm", () => {
     const onCreated = vi.fn();
     render(<TripForm repository={repository} clock={clock} onCreated={onCreated} />);
 
-    fillForm({ name: " ", destination: "", startDate: "2026-12-05", endDate: "2026-12-01" });
+    fillForm({ name: " ", destination: "", startDate: "05/12/2026", endDate: "01/12/2026" });
     submit();
 
     expect(await screen.findByText("Enter a trip name")).toBeInTheDocument();
@@ -67,7 +67,7 @@ describe("TripForm", () => {
     const onCreated = vi.fn();
     render(<TripForm repository={repository} clock={clock} onCreated={onCreated} />);
 
-    fillForm({ name: "Northern loop", destination: "Chiang Mai", startDate: "2026-12-01", endDate: "2026-12-05" });
+    fillForm({ name: "Northern loop", destination: "Chiang Mai", startDate: "01/12/2026", endDate: "05/12/2026" });
     submit();
 
     expect(await screen.findByRole("alert")).toHaveTextContent(

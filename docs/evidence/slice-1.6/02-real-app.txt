@@ -1,0 +1,15 @@
+light end date via calendar = 05/12/2026
+light en-US form overflow= false
+light list = ["Northern loopChiang Mai01/12/2026 – 05/12/2026 · 5 days"]
+light stored = {"schemaVersion":1,"trips":[{"id":"0fd07430-a7f1-49f9-8d31-da45f22d233d","name":"Northern loop","destination":"Chiang Mai","startDate":"2026-12-01","endDate":"2026-12-05","createdAt":"2026-11-03T10:18:28.403Z"}]}
+light en-US list overflow= false
+phone end date via calendar = 05/12/2026
+phone en-US form overflow= false
+phone list = ["Northern loopChiang Mai01/12/2026 – 05/12/2026 · 5 days"]
+phone stored = {"schemaVersion":1,"trips":[{"id":"09bfb7aa-327e-421b-959c-b4db0e2d5e3b","name":"Northern loop","destination":"Chiang Mai","startDate":"2026-12-01","endDate":"2026-12-05","createdAt":"2026-11-03T10:18:29.135Z"}]}
+phone en-US list overflow= false
+phone-dark end date via calendar = 05/12/2026
+phone-dark th-TH form overflow= false
+phone-dark list = ["Northern loopChiang Mai01/12/2026 – 05/12/2026 · 5 days"]
+phone-dark stored = {"schemaVersion":1,"trips":[{"id":"6f874b16-ef44-41cf-b088-143d863b9fb5","name":"Northern loop","destination":"Chiang Mai","startDate":"2026-12-01","endDate":"2026-12-05","createdAt":"2026-11-03T10:18:29.839Z"}]}
+phone-dark th-TH list overflow= false

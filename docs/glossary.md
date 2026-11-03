@@ -5,3 +5,4 @@
 - **Wishlist**: pins not yet scheduled on a day.
 - **Itinerary**: a trip's days, each holding ordered pins with optional time slots.
 - **Day**: one calendar day of a trip. Day 1 is the start date. Start and end dates both count.
+- **Date format**: stored as ISO `YYYY-MM-DD`, shown and typed as dd/mm/yyyy (for example 01/12/2026).

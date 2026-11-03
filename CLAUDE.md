@@ -33,6 +33,9 @@ Next.js agent notes: @AGENTS.md
 - Build: `npm run build`
 - Dependency audit: `npm audit --omit=dev`
 - Performance: `npm run build` route sizes. Lighthouse when UI slices land.
+- Contract / schema diff: compare stored JSON shape (decision 0004) and routes before and after. No public API, library exports or CLI yet.
+- Old-consumer / contract tests: `localStorageTripRepository.test.ts` (stored shape) and the e2e test "a trip saved before dd/mm/yyyy still shows" (old data, new UI).
+- Migration test and rollback: none yet. A schema change bumps `schemaVersion` and must add a migration test.
 
 ## Verification surface
 - UI in the browser, driven with Playwright (Chromium). Screenshots go to `docs/evidence/<slice>/`.
@@ -40,13 +43,22 @@ Next.js agent notes: @AGENTS.md
 
 ## Conventions
 - Files: components `PascalCase.tsx`, everything else `camelCase.ts`. Tests sit next to the code as `*.test.ts(x)`. E2E tests go in `e2e/*.spec.ts`.
-- Dates: ISO `YYYY-MM-DD` strings in the domain. Money: integer THB.
+- Dates: ISO `YYYY-MM-DD` strings in the domain and storage. The UI shows and accepts dd/mm/yyyy (`ui/dayMonthYear.ts`, `DateField`). Never use the browser's native date format. Money: integer THB.
 - Commits: small and imperative ("Add trip list page"). One slice per branch and PR.
 
 ## Extra Definition of Done items
 - The page works at phone width (375px) with no horizontal scroll.
 - Map pages show OpenStreetMap attribution.
 - Pages start with `AppHeader`, use one filled primary per area, and look right in light and dark mode.
+
+## Compatibility surfaces (what must not break)
+- Public API / consumers: none (no backend).
+- Library exports: none.
+- CLI: none.
+- Data formats and schema: localStorage `pak-mud:trips` = `{ schemaVersion: 1, trips: Trip[] }` with ISO dates (decision 0004). Trips saved by older versions must still load.
+- Config and env vars: none.
+- Routes and links people may bookmark: `/`, `/trips`, `/trips/new`.
+- Versioning scheme and deprecation policy: not set yet (no releases).
 
 ## Performance budgets
 - First-load JS per route: at most 200 kB (checked from Slice 1 on).
