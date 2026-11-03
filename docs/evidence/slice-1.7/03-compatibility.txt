@@ -1,0 +1,1 @@
+B8: no storage, route or domain changes (git diff shows only ui/, theme.test.ts, e2e). Stored trips untouched; old-data e2e test passes. Test edits: 2 description assertions now also expect the format hint (stricter); redundant 3:1 accent pair removed (still required at 4.5:1).

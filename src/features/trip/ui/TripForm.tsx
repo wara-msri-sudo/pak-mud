@@ -31,17 +31,39 @@ const DATE_FIELDS = [
   { field: "endDate", label: "End date" },
 ] as const;
 
-/** Dates are typed as dd/mm/yyyy; the domain receives ISO dates, or the raw text so it reports the error. */
-function readDraft(form: HTMLFormElement): TripDraft {
+const DATE_FORMAT_ERROR = "Enter the date as dd/mm/yyyy, for example 01/12/2026";
+
+type DateFieldName = (typeof DATE_FIELDS)[number]["field"];
+
+type FormInput = {
+  draft: TripDraft;
+  /** Date fields holding text that is not a dd/mm/yyyy date. */
+  unreadableDates: DateFieldName[];
+};
+
+/** Dates are typed as dd/mm/yyyy. The domain only ever receives ISO dates, or "" when the text can't be read. */
+function readForm(form: HTMLFormElement): FormInput {
   const data = new FormData(form);
-  const text = (field: TripField) => String(data.get(field) ?? "");
-  const isoDate = (field: TripField) => parseDayMonthYear(text(field)) ?? text(field);
+  const text = (field: TripField) => String(data.get(field) ?? "").trim();
+  const unreadableDates = DATE_FIELDS.map(({ field }) => field).filter(
+    (field) => text(field) !== "" && parseDayMonthYear(text(field)) === null,
+  );
+  const isoDate = (field: DateFieldName) => parseDayMonthYear(text(field)) ?? "";
   return {
-    name: text("name"),
-    destination: text("destination"),
-    startDate: isoDate("startDate"),
-    endDate: isoDate("endDate"),
+    draft: {
+      name: text("name"),
+      destination: text("destination"),
+      startDate: isoDate("startDate"),
+      endDate: isoDate("endDate"),
+    },
+    unreadableDates,
   };
+}
+
+/** A date the visitor typed in the wrong format needs a format hint, not "Enter a date". */
+function withDateFormatErrors(errors: TripValidationErrors, unreadableDates: DateFieldName[]) {
+  const formatErrors = Object.fromEntries(unreadableDates.map((field) => [field, DATE_FORMAT_ERROR]));
+  return { ...errors, ...formatErrors };
 }
 
 export function TripForm({ repository, clock, onCreated }: TripFormProps) {
@@ -54,13 +76,15 @@ export function TripForm({ repository, clock, onCreated }: TripFormProps) {
     if (isSaving) return;
     setIsSaving(true);
     setSaveProblem(null);
+    setErrors({});
     try {
-      const result = await addTrip(repository, readDraft(event.currentTarget), clock);
+      const { draft, unreadableDates } = readForm(event.currentTarget);
+      const result = await addTrip(repository, draft, clock);
       if (result.ok) {
         onCreated(result.trip);
         return;
       }
-      setErrors(result.errors);
+      setErrors(withDateFormatErrors(result.errors, unreadableDates));
     } catch (error) {
       setSaveProblem(storageProblemMessage(error));
     }

@@ -87,3 +87,15 @@ test("the calendar button fills the date as dd/mm/yyyy", async ({ page }) => {
 
   await expect(page.getByLabel("Start date", { exact: true })).toHaveValue("24/12/2026");
 });
+
+test("a date typed month-first asks for dd/mm/yyyy", async ({ page }) => {
+  await page.goto("/trips/new");
+  await page.getByLabel("Trip name").fill("Northern loop");
+  await page.getByLabel("Destination").fill("Chiang Mai");
+  await page.getByLabel("Start date", { exact: true }).fill("12/01/2026");
+  await page.getByLabel("End date", { exact: true }).fill("12/31/2026");
+  await page.getByRole("button", { name: "Create trip" }).click();
+
+  await expect(page.getByText("Enter the date as dd/mm/yyyy, for example 01/12/2026")).toBeVisible();
+  await expect(page).toHaveURL("/trips/new");
+});

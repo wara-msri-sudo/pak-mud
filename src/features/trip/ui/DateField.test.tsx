@@ -19,6 +19,21 @@ describe("DateField", () => {
     expect(field).toHaveAccessibleDescription("Format: dd/mm/yyyy");
   });
 
+  it("uses the normal keyboard on phones, which has the / key", () => {
+    const { field } = renderField();
+
+    expect(field).not.toHaveAttribute("inputmode", "numeric");
+  });
+
+  it("empties the field when the calendar is cleared", () => {
+    const { field, picker } = renderField();
+    fireEvent.change(picker, { target: { value: "2026-12-01" } });
+
+    fireEvent.change(picker, { target: { value: "" } });
+
+    expect(field).toHaveValue("");
+  });
+
   it("fills the field as dd/mm/yyyy when a date is picked from the calendar", () => {
     const { field, picker } = renderField();
 
@@ -52,10 +67,12 @@ describe("DateField", () => {
     expect(picker).toHaveAttribute("aria-hidden", "true");
   });
 
-  it("describes the error instead of the format when there is one", () => {
+  it("describes the error and keeps the format hint when there is one", () => {
     render(<DateField name="endDate" label="End date" error="Enter an end date" />);
 
-    expect(screen.getByLabelText("End date")).toHaveAccessibleDescription("Enter an end date");
+    expect(screen.getByLabelText("End date")).toHaveAccessibleDescription(
+      "Enter an end date Format: dd/mm/yyyy",
+    );
     expect(screen.getByLabelText("End date")).toHaveAttribute("aria-invalid", "true");
   });
 });

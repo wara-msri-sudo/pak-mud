@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { formatDayMonthYear, parseDayMonthYear } from "./dayMonthYear";
 
 type DateFieldProps = {
@@ -15,21 +15,22 @@ const FORMAT_HINT = "dd/mm/yyyy";
  * A dd/mm/yyyy text field with a calendar button.
  * Browsers format <input type="date"> from the device language, so the visible field is text;
  * a hidden date input only provides the browser's calendar popup.
+ * The normal keyboard is used on purpose: phone number pads have no "/" key.
  */
 export function DateField({ name, label, error }: DateFieldProps) {
   const [text, setText] = useState("");
+  const textRef = useRef<HTMLInputElement>(null);
   const pickerRef = useRef<HTMLInputElement>(null);
-  const hintId = `${name}-hint`;
-  const errorId = `${name}-error`;
+  const describedBy = useId();
+  const hintId = `${describedBy}-hint`;
+  const errorId = `${describedBy}-error`;
 
   function openCalendar() {
-    const picker = pickerRef.current;
-    if (!picker) return;
     try {
-      picker.showPicker();
+      pickerRef.current?.showPicker();
     } catch {
       // Older browsers without showPicker: focusing still lets keyboard users type the date.
-      document.getElementById(name)?.focus();
+      textRef.current?.focus();
     }
   }
 
@@ -40,16 +41,16 @@ export function DateField({ name, label, error }: DateFieldProps) {
       </label>
       <div className="relative flex gap-2">
         <input
+          ref={textRef}
           id={name}
           name={name}
           type="text"
-          inputMode="numeric"
           autoComplete="off"
           placeholder={FORMAT_HINT}
           value={text}
           onChange={(event) => setText(event.target.value)}
           aria-invalid={error ? true : undefined}
-          aria-describedby={error ? errorId : hintId}
+          aria-describedby={error ? `${errorId} ${hintId}` : hintId}
           className="field-input"
         />
         <input
@@ -58,7 +59,10 @@ export function DateField({ name, label, error }: DateFieldProps) {
           tabIndex={-1}
           aria-hidden="true"
           value={parseDayMonthYear(text) ?? ""}
-          onChange={(event) => event.target.value && setText(formatDayMonthYear(event.target.value))}
+          onChange={(event) => {
+            const isoDate = event.target.value;
+            setText(isoDate ? formatDayMonthYear(isoDate) : "");
+          }}
           className="pointer-events-none absolute inset-0 opacity-0"
         />
         <button
@@ -73,15 +77,14 @@ export function DateField({ name, label, error }: DateFieldProps) {
           </svg>
         </button>
       </div>
-      {error ? (
+      {error && (
         <p id={errorId} className="text-sm text-danger">
           {error}
         </p>
-      ) : (
-        <p id={hintId} className="sr-only">
-          Format: {FORMAT_HINT}
-        </p>
       )}
+      <p id={hintId} className="sr-only">
+        Format: {FORMAT_HINT}
+      </p>
     </div>
   );
 }

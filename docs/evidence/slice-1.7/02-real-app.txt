@@ -1,0 +1,5 @@
+inputmode on date field = null
+end date description ids = _R_1ainpfivb_-error _R_1ainpfivb_-hint
+end date described as = Enter the date as dd/mm/yyyy, for example 01/12/2026 | Format: dd/mm/yyyy
+after picking = 05/12/2026
+after clearing calendar = ""

@@ -15,8 +15,16 @@ function readTokens(block: string): Tokens {
   );
 }
 
-const lightTokens = readTokens(GLOBALS_CSS.split("@theme")[0]);
-const darkTokens = readTokens(GLOBALS_CSS.split("prefers-color-scheme: dark")[1] ?? "");
+/** Text between two markers in globals.css, so each theme is read from its own block only. */
+function cssBetween(start: string, end: string): string {
+  const from = GLOBALS_CSS.indexOf(start);
+  const to = GLOBALS_CSS.indexOf(end, from + start.length);
+  if (from === -1 || to === -1) throw new Error(`globals.css is missing "${start}" or "${end}"`);
+  return GLOBALS_CSS.slice(from, to);
+}
+
+const lightTokens = readTokens(cssBetween(":root", "@media (prefers-color-scheme: dark)"));
+const darkTokens = readTokens(cssBetween("@media (prefers-color-scheme: dark)", "@theme"));
 
 function relativeLuminance(hex: string): number {
   const channels = [1, 3, 5].map((start) => parseInt(hex.slice(start, start + 2), 16) / 255);
@@ -45,8 +53,15 @@ const PAIRS: [string, string, number, string][] = [
   ["band-muted", "band", AA_TEXT, "band subtitle"],
   ["band-cta-foreground", "band-cta", AA_TEXT, "tan button label"],
   ["band-cta", "band", AA_NON_TEXT, "logo and band focus ring"],
-  ["accent", "background", AA_NON_TEXT, "focus ring"],
 ];
+
+describe("token parser", () => {
+  it("reads the light and dark blocks separately", () => {
+    expect(lightTokens.background).toBe("#f5f7f8");
+    expect(darkTokens.background).toBe("#0e1519");
+    expect(lightTokens).not.toEqual(darkTokens);
+  });
+});
 
 describe.each([
   ["light", lightTokens],
