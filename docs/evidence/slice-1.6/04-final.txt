@@ -1,0 +1,85 @@
+commit=d41bc2c
+### npm run lint
+
+> pak-mud@0.1.0 lint
+> eslint .
+
+exit=0
+### npm run typecheck
+
+> pak-mud@0.1.0 typecheck
+> tsc --noEmit
+
+exit=0
+### npm test
+
+> pak-mud@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /home/user/pak-mud
+
+
+ Test Files  13 passed (13)
+      Tests  102 passed (102)
+   Start at  10:19:05
+   Duration  7.54s (environment 71%, setup 15%, tests 11%, import 2%, transform 1%)
+
+Environment  jsdom was created 13 times · 13.01s total, 71% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+
+exit=0
+### npm run build
+
+> pak-mud@0.1.0 build
+> next build
+
+▲ Next.js 16.4.4 (Turbopack)
+✓ Running next.config.ts took 44ms
+- Cache Components enabled
+- Partial Prefetching enabled
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 442ms
+  Running TypeScript ...
+  Finished TypeScript in 2.9s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/6) ...
+  Generating static pages using 3 workers (1/6) 
+  Generating static pages using 3 workers (2/6) 
+  Generating static pages using 3 workers (4/6) 
+✓ Generating static pages using 3 workers (6/6) in 500ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /trips
+└ ○ /trips/new
+
+
+○  (Static)  prerendered as static content
+
+exit=0
+### npm run test:e2e
+
+> pak-mud@0.1.0 test:e2e
+> playwright test
+
+
+Running 7 tests using 2 workers
+
+  ✓  1 [chromium] › e2e/home.spec.ts:3:5 › home page introduces Pak Mud (1.4s)
+  ✓  3 [chromium] › e2e/trips.spec.ts:38:5 › an invalid form shows errors and saves nothing (2.8s)
+  ✓  4 [chromium] › e2e/trips.spec.ts:51:5 › corrupt saved data shows a notice instead of crashing (1.6s)
+  ✓  2 [chromium] › e2e/trips.spec.ts:17:5 › a visitor creates trips and still sees them after a reload (5.9s)
+  ✓  5 [chromium] › e2e/trips.spec.ts:61:5 › the header band offers a new trip and a way back (1.6s)
+  ✓  6 [chromium] › e2e/trips.spec.ts:70:5 › a trip saved before dd/mm/yyyy still shows, in the new format (1.6s)
+  ✓  7 [chromium] › e2e/trips.spec.ts:83:5 › the calendar button fills the date as dd/mm/yyyy (1.1s)
+
+  7 passed (12.1s)
+exit=0
+### npm audit --omit=dev
+found 0 vulnerabilities
+exit=0
