@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center gap-4 px-4 py-24 sm:px-8">
@@ -9,6 +11,9 @@ export default function Home() {
         Pin the places you want to see, then turn your pins into a
         day-by-day plan.
       </p>
+      <Link href="/trips" className="button-primary mt-4 self-start">
+        Plan a trip
+      </Link>
     </main>
   );
 }

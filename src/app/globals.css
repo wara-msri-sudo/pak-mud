@@ -4,12 +4,22 @@
   --background: #ffffff;
   --foreground: #171717;
   --muted: #52525b;
+  --line: #d4d4d8;
+  --accent: #0f766e;
+  --accent-hover: #115e59;
+  --on-accent: #ffffff;
+  --danger: #b91c1c;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-on-accent: var(--on-accent);
+  --color-danger: var(--danger);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -19,10 +29,29 @@
     --background: #0a0a0a;
     --foreground: #ededed;
     --muted: #a1a1aa;
+    --line: #3f3f46;
+    --accent: #2dd4bf;
+    --accent-hover: #5eead4;
+    --on-accent: #042f2e;
+    --danger: #f87171;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+@layer components {
+  .button-primary {
+    @apply inline-flex min-h-11 items-center justify-center rounded-full bg-accent px-5 font-medium text-on-accent transition-colors hover:bg-accent-hover disabled:opacity-60;
+  }
+
+  .field-input {
+    @apply min-h-11 w-full rounded-lg border border-line bg-background px-3 text-foreground aria-invalid:border-danger;
+  }
+
+  :where(a, button, input):focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+  }
 }

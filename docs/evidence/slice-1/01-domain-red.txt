@@ -1,0 +1,74 @@
+
+ RUN  v5.1.0 /home/user/pak-mud
+
+ ❯ src/features/trip/domain/trip.test.ts (0 test)
+ ❯ src/features/trip/domain/countTripDays.test.ts (12 tests | 7 failed) 14ms
+   ❯ isIsoDate (7)
+     × accepts 2026-12-01 3ms
+     × accepts 2028-02-29 1ms
+     × rejects "" 0ms
+     × rejects "2026-2-1" 1ms
+     × rejects "01/12/2026" 1ms
+     × rejects "2026-02-30" 0ms
+     × rejects "2027-02-29" 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/trip/domain/trip.test.ts [ src/features/trip/domain/trip.test.ts ]
+Error: Failed to resolve import "./trip" from "src/features/trip/domain/trip.test.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/user/pak-mud/src/features/trip/domain/trip.test.ts:8:7
+  1  |  import { describe, expect, it } from "vitest";
+  2  |  import { createTrip, sortTripsByStartDate, TRIP_TEXT_MAX_LENGTH } from "./trip";
+     |                                                                          ^
+  3  |  const ID = "trip-1";
+  4  |  const CREATED_AT = "2026-11-03T08:00:00.000Z";
+ ❯ TransformPluginContext._formatLog node_modules/vite/dist/node/chunks/node.js:8803:39
+ ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/node.js:8800:14
+ ❯ resolveId node_modules/vite/dist/node/chunks/node.js:26594:18
+ ❯ node_modules/vite/dist/node/chunks/node.js:26693:23
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/node.js:26666:4
+ ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/node.js:8582:14
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/node.js:20155:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/trip/domain/countTripDays.test.ts > isIsoDate > accepts 2026-12-01
+ FAIL  src/features/trip/domain/countTripDays.test.ts > isIsoDate > accepts 2028-02-29
+TypeError: isIsoDate is not a function
+ ❯ src/features/trip/domain/countTripDays.test.ts:32:12
+     30| describe("isIsoDate", () => {
+     31|   it.each(["2026-12-01", "2028-02-29"])("accepts %s", (value) => {
+     32|     expect(isIsoDate(value)).toBe(true);
+       |            ^
+     33|   });
+     34|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  src/features/trip/domain/countTripDays.test.ts > isIsoDate > rejects ""
+ FAIL  src/features/trip/domain/countTripDays.test.ts > isIsoDate > rejects "2026-2-1"
+ FAIL  src/features/trip/domain/countTripDays.test.ts > isIsoDate > rejects "01/12/2026"
+ FAIL  src/features/trip/domain/countTripDays.test.ts > isIsoDate > rejects "2026-02-30"
+ FAIL  src/features/trip/domain/countTripDays.test.ts > isIsoDate > rejects "2027-02-29"
+TypeError: isIsoDate is not a function
+ ❯ src/features/trip/domain/countTripDays.test.ts:38:14
+     36|     "rejects %j",
+     37|     (value) => {
+     38|       expect(isIsoDate(value)).toBe(false);
+       |              ^
+     39|     },
+     40|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  7 failed | 5 passed (12)
+   Start at  08:37:39
+   Duration  1.30s (environment 75%, setup 18%, import 4%, transform 1%, tests 1%, worker 1%)
+
+exit=1

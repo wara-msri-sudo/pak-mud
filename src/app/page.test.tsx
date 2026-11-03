@@ -11,4 +11,10 @@ describe("Home page", () => {
     ).toBeInTheDocument();
     expect(screen.getByText("Plan your Thailand trip")).toBeInTheDocument();
   });
+
+  it("links to the trip list", () => {
+    render(<Home />);
+
+    expect(screen.getByRole("link", { name: "Plan a trip" })).toHaveAttribute("href", "/trips");
+  });
 });

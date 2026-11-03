@@ -1,0 +1,70 @@
+commit=58c33b5
+### npm run lint
+
+> pak-mud@0.1.0 lint
+> eslint .
+
+exit=0
+### npm run typecheck
+
+> pak-mud@0.1.0 typecheck
+> tsc --noEmit
+
+exit=0
+### npm test
+
+> pak-mud@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /home/user/pak-mud
+
+
+ Test Files  2 passed (2)
+      Tests  6 passed (6)
+   Start at  08:35:58
+   Duration  2.47s (environment 77%, setup 15%, tests 6%, transform 2%, import 1%)
+
+exit=0
+### npm run build
+
+> pak-mud@0.1.0 build
+> next build
+
+▲ Next.js 16.4.4 (Turbopack)
+✓ Running next.config.ts took 3.4s
+- Cache Components enabled
+- Partial Prefetching enabled
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 8.7s
+  Running TypeScript ...
+  Finished TypeScript in 4.7s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/4) ...
+  Generating static pages using 3 workers (1/4) 
+  Generating static pages using 3 workers (2/4) 
+  Generating static pages using 3 workers (3/4) 
+✓ Generating static pages using 3 workers (4/4) in 431ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+exit=0
+### npm run test:e2e
+
+> pak-mud@0.1.0 test:e2e
+> playwright test
+
+
+Running 1 test using 1 worker
+
+  ✓  1 [chromium] › e2e/home.spec.ts:3:5 › home page introduces Pak Mud (1.9s)
+
+  1 passed (12.1s)
+exit=0

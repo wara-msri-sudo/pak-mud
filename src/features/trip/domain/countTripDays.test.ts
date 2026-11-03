@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { countTripDays } from "./countTripDays";
+import { countTripDays, isIsoDate } from "./countTripDays";
 
 describe("countTripDays", () => {
   it("counts a single-day trip as one day", () => {
@@ -25,4 +25,17 @@ describe("countTripDays", () => {
       "Invalid date: 01/12/2026",
     );
   });
+});
+
+describe("isIsoDate", () => {
+  it.each(["2026-12-01", "2028-02-29"])("accepts %s", (value) => {
+    expect(isIsoDate(value)).toBe(true);
+  });
+
+  it.each(["", "2026-2-1", "01/12/2026", "2026-02-30", "2027-02-29"])(
+    "rejects %j",
+    (value) => {
+      expect(isIsoDate(value)).toBe(false);
+    },
+  );
 });

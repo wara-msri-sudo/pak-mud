@@ -23,15 +23,26 @@ import React, Next.js or outer layers, or use browser globals (`eslint.config.mj
 ## Features
 | Feature | Status | Notes |
 |---|---|---|
-| `trip` | domain started | `countTripDays` (inclusive day count) |
+| `trip` | create and list (Slice 1) | `createTrip`, `sortTripsByStartDate`, `countTripDays`, `isIsoDate`. Use cases `addTrip` and `listTrips`. Adapters: localStorage ([0004](decisions/0004-trip-storage-schema.md)) and in-memory (tests) |
 | `place` | planned (Slice 2) | `PlaceSearch` port |
 | `itinerary` | planned (Slice 3) | |
 | `budget` | planned (Slice 5) | |
 
-## Planned ports
-- `TripRepository`: persistence (adapter: localStorage)
+## Ports
+- `TripRepository` (built, `src/features/trip/application/tripRepository.ts`): `list()` and `save()`. Failures are a `TripStorageError` with the problem `unavailable` or `corrupt`
 - `PlaceSearch`: place lookup (adapter: Nominatim or Photon)
 - `RoutingService`: travel time between stops (provider to be decided in Slice 4)
+
+## Routes
+| Route | Page | Feature UI |
+|---|---|---|
+| `/` | `src/app/page.tsx` | link to `/trips` |
+| `/trips` | `src/app/trips/page.tsx` | `TripList` (client) |
+| `/trips/new` | `src/app/trips/new/page.tsx` | `NewTripForm` -> `TripForm` (client) |
+
+Pages are server components that only lay out the page. Client components load data in the browser,
+because localStorage only exists there. `adapters/browserTrips.ts` wires the real repository, plus a clock
+that supplies UUID ids (`generateTripId`: `randomUUID`, or random bytes on plain-HTTP pages) and the current time.
 
 ## Data flow
 `src/app` page -> feature `ui` component -> application use case -> port -> adapter.

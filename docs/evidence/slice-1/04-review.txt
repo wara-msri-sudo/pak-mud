@@ -1,0 +1,36 @@
+### npm run lint
+
+> pak-mud@0.1.0 lint
+> eslint .
+
+exit=0
+### npm run typecheck
+
+> pak-mud@0.1.0 typecheck
+> tsc --noEmit
+
+exit=0
+### npm test
+
+> pak-mud@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /home/user/pak-mud
+
+
+ Test Files  9 passed (9)
+      Tests  49 passed (49)
+   Start at  08:43:35
+   Duration  4.50s (environment 70%, setup 15%, tests 10%, transform 3%, import 2%)
+
+Environment  jsdom was created 9 times · 7.95s total, 70% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+
+exit=0
+### npm audit --omit=dev
+found 0 vulnerabilities
+exit=0
+### raw HTML sinks in src
+none

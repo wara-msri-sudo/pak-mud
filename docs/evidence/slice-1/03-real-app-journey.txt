@@ -1,0 +1,21 @@
+first-load JS /: 8 scripts, 468.3 kB raw, 140.9 kB gzip
+first-load JS /trips: 8 scripts, 473.4 kB raw, 143.0 kB gzip
+first-load JS /trips/new: 8 scripts, 473.4 kB raw, 143.0 kB gzip
+desktop empty horizontalOverflow= false
+desktop invalid horizontalOverflow= false
+desktop after reload: ["Northern loop: temples, night markets and Doi InthanonChiang Mai1–5 Dec 2026 · 5 days","IslandsKrabi10–14 Jan 2027 · 5 days"]
+desktop stored: {"schemaVersion":1,"trips":[{"id":"4d5c4506-e834-4884-a49c-cce1682dab6d","name":"Islands","destination":"Krabi","startDate":"2027-01-10","endDate":"2027-01-14","createdAt":"2026-11-03T08:43:11.110Z"},{"id":"4452438d-1251-446f-a8fe-1ba0f8ac3652","name":"Northern loop: temples, night markets and Doi Inthanon","destination":"Chiang Mai","startDate":"2026-12-01","endDate":"2026-12-05","createdAt":"2026-11-03T08:43:11.305Z"}]}
+desktop list horizontalOverflow= false
+desktop corrupt notice: We couldn't read your saved trips. They are left as they are, and new trips can't be saved until this is fixed.
+phone-375 empty horizontalOverflow= false
+phone-375 invalid horizontalOverflow= false
+phone-375 after reload: ["Northern loop: temples, night markets and Doi InthanonChiang Mai1–5 Dec 2026 · 5 days","IslandsKrabi10–14 Jan 2027 · 5 days"]
+phone-375 stored: {"schemaVersion":1,"trips":[{"id":"549de11c-635b-4b9f-8dfc-78b59260d3a2","name":"Islands","destination":"Krabi","startDate":"2027-01-10","endDate":"2027-01-14","createdAt":"2026-11-03T08:43:12.420Z"},{"id":"5681e04b-1a44-4125-8599-41a25dec2d67","name":"Northern loop: temples, night markets and Doi Inthanon","destination":"Chiang Mai","startDate":"2026-12-01","endDate":"2026-12-05","createdAt":"2026-11-03T08:43:12.603Z"}]}
+phone-375 list horizontalOverflow= false
+phone-375 corrupt notice: We couldn't read your saved trips. They are left as they are, and new trips can't be saved until this is fixed.
+desktop-dark empty horizontalOverflow= false
+desktop-dark invalid horizontalOverflow= false
+desktop-dark after reload: ["Northern loop: temples, night markets and Doi InthanonChiang Mai1–5 Dec 2026 · 5 days","IslandsKrabi10–14 Jan 2027 · 5 days"]
+desktop-dark stored: {"schemaVersion":1,"trips":[{"id":"bd5d90e2-90aa-4e71-b925-f8cae2770456","name":"Islands","destination":"Krabi","startDate":"2027-01-10","endDate":"2027-01-14","createdAt":"2026-11-03T08:43:13.720Z"},{"id":"2d9504c6-acc1-4918-943d-9733bf62824d","name":"Northern loop: temples, night markets and Doi Inthanon","destination":"Chiang Mai","startDate":"2026-12-01","endDate":"2026-12-05","createdAt":"2026-11-03T08:43:13.923Z"}]}
+desktop-dark list horizontalOverflow= false
+desktop-dark corrupt notice: We couldn't read your saved trips. They are left as they are, and new trips can't be saved until this is fixed.
