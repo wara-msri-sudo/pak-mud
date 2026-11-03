@@ -45,6 +45,7 @@ describe("TripList", () => {
       "Northern loopChiang Mai01/12/2026 – 05/12/2026 · 5 days",
       "IslandsKrabi10/01/2027 – 14/01/2027 · 5 days",
     ]);
+    expect(screen.getByRole("link", { name: /Northern loop/ })).toHaveAttribute("href", "/trips/sooner");
     // The "New trip" action lives on the page header band, not in the list.
     expect(screen.queryByRole("link", { name: "New trip" })).not.toBeInTheDocument();
   });

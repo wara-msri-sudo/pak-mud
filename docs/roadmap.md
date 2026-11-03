@@ -11,11 +11,11 @@ decisions) is agreed with the owner when the slice starts. The drafts below are 
 | 1.5 | Theme E3 · Slate-led, header band |
 | 1.6 | dd/mm/yyyy dates |
 | 1.7 | Code-review fixes |
+| 2 | Trip page, search places (Nominatim) and pin them |
 
 ## Next
 | Slice | What | Status |
 |---|---|---|
-| 2 | Trip page, search places (Nominatim) and pin them | Plan ready, waiting for owner approval |
 | 3 | Day-by-day itinerary with a wishlist | Planned |
 | 4 | Map and route per day | Planned |
 | 5 | Budget summary: cost per day, per trip, per category | Planned |

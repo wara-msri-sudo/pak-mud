@@ -53,10 +53,15 @@ export function TripList({ repository = browserTripRepository }: { repository?: 
   return (
     <ul className="flex flex-col gap-3">
       {state.trips.map((trip) => (
-        <li key={trip.id} className="card flex flex-col gap-0.5">
-          <h2 className="text-lg font-semibold break-words">{trip.name}</h2>
-          <p className="break-words">{trip.destination}</p>
-          <p className="text-sm text-muted">{formatTripDates(trip.startDate, trip.endDate)}</p>
+        <li key={trip.id}>
+          <Link
+            href={`/trips/${encodeURIComponent(trip.id)}`}
+            className="card flex flex-col gap-0.5 transition-colors hover:border-accent"
+          >
+            <h2 className="text-lg font-semibold break-words">{trip.name}</h2>
+            <p className="break-words">{trip.destination}</p>
+            <p className="text-sm text-muted">{formatTripDates(trip.startDate, trip.endDate)}</p>
+          </Link>
         </li>
       ))}
     </ul>

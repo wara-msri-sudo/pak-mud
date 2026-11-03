@@ -9,7 +9,7 @@ Next.js agent notes: @AGENTS.md
 ## Rules
 1. Domain code (`src/features/*/domain/`) never imports React, Next.js, outer layers or browser APIs. ESLint enforces this.
 2. Group code by feature first: `src/features/<feature>/{domain,application,adapters,ui}`. Keep `src/app/` thin.
-3. Persistence and external services go through ports (`TripRepository`, `PlaceSearch`, `RoutingService`).
+3. Persistence and external services go through ports (`TripRepository`, `PinRepository`, `PlaceSearch`, `RoutingService`).
 4. Ask before adding a dependency, changing the stored data shape, or calling a new external service.
 5. Never weaken tests, lint rules or TypeScript strictness to get a pass.
 6. Every slice ships with tests, evidence under `docs/evidence/<slice>/`, and updated docs.
@@ -34,12 +34,12 @@ Next.js agent notes: @AGENTS.md
 - Dependency audit: `npm audit --omit=dev`
 - Performance: `npm run build` route sizes. Lighthouse when UI slices land.
 - Contract / schema diff: compare stored JSON shape (decision 0004) and routes before and after. No public API, library exports or CLI yet.
-- Old-consumer / contract tests: `localStorageTripRepository.test.ts` (stored shape) and the e2e test "a trip saved before dd/mm/yyyy still shows" (old data, new UI).
+- Old-consumer / contract tests: `localStorageTripRepository.test.ts`, `localStoragePinRepository.test.ts` (stored shapes) and the e2e test "a trip saved before dd/mm/yyyy still shows" (old data, new UI).
 - Migration test and rollback: none yet. A schema change bumps `schemaVersion` and must add a migration test.
 
 ## Verification surface
 - UI in the browser, driven with Playwright (Chromium). Screenshots go to `docs/evidence/<slice>/`.
-- Required access: none (no secrets, no backend).
+- Required access: none (no secrets, no backend). Real search needs `nominatim.openstreetmap.org` allowed in the environment's network settings. E2E tests intercept it.
 
 ## Conventions
 - Files: components `PascalCase.tsx`, everything else `camelCase.ts`. Tests sit next to the code as `*.test.ts(x)`. E2E tests go in `e2e/*.spec.ts`.
@@ -56,8 +56,10 @@ Next.js agent notes: @AGENTS.md
 - Library exports: none.
 - CLI: none.
 - Data formats and schema: localStorage `pak-mud:trips` = `{ schemaVersion: 1, trips: Trip[] }` with ISO dates (decision 0004). Trips saved by older versions must still load.
+- Data formats and schema: localStorage `pak-mud:pins` = `{ schemaVersion: 1, pins: Pin[] }` (decision 0006). Pins saved by older versions must still load.
+- External API: Nominatim search request and usage policy (decision 0007).
 - Config and env vars: none.
-- Routes and links people may bookmark: `/`, `/trips`, `/trips/new`.
+- Routes and links people may bookmark: `/`, `/trips`, `/trips/new`, `/trips/[id]`.
 - Versioning scheme and deprecation policy: not set yet (no releases).
 
 ## Performance budgets

@@ -11,3 +11,5 @@
 - **Share**: the part of a cost item a traveller is responsible for (equal or custom split).
 - **Balance**: what a traveller paid minus their shares. Positive means they get money back, negative means they owe.
 - **Settle up**: the list of payments between travellers that brings every balance to zero.
+- **Category**: what kind of place a pin is: Food, Temple, Nature, Shopping, Nightlife or Stay.
+- **Place**: a search result (name, area, coordinates) before it is pinned.

@@ -1,0 +1,28 @@
+REAL nominatim request failed: net::ERR_TUNNEL_CONNECTION_FAILED
+REAL nominatim: results list shown = false | alert = Search isn't available right now. Check your connection and try again in a moment.
+first-load JS /trips: 147.2 kB gzip (9 scripts)
+first-load JS /trips/trip-bkk: 150.8 kB gzip (9 scripts)
+light trip-empty overflow= false
+light keyboard picked = temple
+light pin-form overflow= false
+light after reload pins = ["Wat Pho","Wat Arun"]
+light results = ["Wat PhoPhra Nakhon District, BangkokPinned","Wat ArunBangkok Yai District, BangkokPinned","Wat Saket (Golden Mount)Pom Prap Sattru Phai District, BangkokPin"]
+light stored pins = {"schemaVersion":1,"pins":[{"id":"e9525aa8-de9f-4047-b927-3a9cb6bb1f48","tripId":"trip-bkk","createdAt":"2026-11-03T11:41:54.713Z","placeId":"way/1","name":"Wat…
+light trips key unchanged = true
+light pinned overflow= false
+phone trip-empty overflow= false
+phone keyboard picked = temple
+phone pin-form overflow= false
+phone after reload pins = ["Wat Pho","Wat Arun"]
+phone results = ["Wat PhoPhra Nakhon District, BangkokPinned","Wat ArunBangkok Yai District, BangkokPinned","Wat Saket (Golden Mount)Pom Prap Sattru Phai District, BangkokPin"]
+phone stored pins = {"schemaVersion":1,"pins":[{"id":"c736eace-dcf4-4fb9-a2a6-83d81935dd3b","tripId":"trip-bkk","createdAt":"2026-11-03T11:41:56.294Z","placeId":"way/1","name":"Wat…
+phone trips key unchanged = true
+phone pinned overflow= false
+phone-dark trip-empty overflow= false
+phone-dark keyboard picked = temple
+phone-dark pin-form overflow= false
+phone-dark after reload pins = ["Wat Pho","Wat Arun"]
+phone-dark results = ["Wat PhoPhra Nakhon District, BangkokPinned","Wat ArunBangkok Yai District, BangkokPinned","Wat Saket (Golden Mount)Pom Prap Sattru Phai District, BangkokPin"]
+phone-dark stored pins = {"schemaVersion":1,"pins":[{"id":"39bc2cb8-1a80-49b8-94cd-db02c4a466c0","tripId":"trip-bkk","createdAt":"2026-11-03T11:41:57.648Z","placeId":"way/1","name":"Wat…
+phone-dark trips key unchanged = true
+phone-dark pinned overflow= false

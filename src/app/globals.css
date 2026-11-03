@@ -17,6 +17,13 @@
   --band-muted: #b9ccd5;
   --band-cta: #c6ac8f;
   --band-cta-foreground: #0a0908;
+  /* Pin categories: temple, nature, nightlife from E3; food, shopping, stay picked to match (decision 0005). */
+  --cat-food: #8a4b1f;
+  --cat-temple: #5e2b52;
+  --cat-nature: #4d6a2e;
+  --cat-shopping: #7a3e48;
+  --cat-nightlife: #3e6e8e;
+  --cat-stay: #2f5d57;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,6 +44,12 @@
     --band-muted: #9fb0b7;
     --band-cta: #c6ac8f;
     --band-cta-foreground: #0e1519;
+    --cat-food: #e0a774;
+    --cat-temple: #c99bbe;
+    --cat-nature: #a3bf7a;
+    --cat-shopping: #d79aa4;
+    --cat-nightlife: #8db7d4;
+    --cat-stay: #8cc4bb;
   }
 }
 
@@ -55,6 +68,12 @@
   --color-band-muted: var(--band-muted);
   --color-band-cta: var(--band-cta);
   --color-band-cta-foreground: var(--band-cta-foreground);
+  --color-cat-food: var(--cat-food);
+  --color-cat-temple: var(--cat-temple);
+  --color-cat-nature: var(--cat-nature);
+  --color-cat-shopping: var(--cat-shopping);
+  --color-cat-nightlife: var(--cat-nightlife);
+  --color-cat-stay: var(--cat-stay);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

@@ -24,13 +24,14 @@ import React, Next.js or outer layers, or use browser globals (`eslint.config.mj
 | Feature | Status | Notes |
 |---|---|---|
 | `trip` | create and list (Slice 1) | `createTrip`, `sortTripsByStartDate`, `countTripDays`, `isIsoDate`. Use cases `addTrip` and `listTrips`. Adapters: localStorage ([0004](decisions/0004-trip-storage-schema.md)) and in-memory (tests) |
-| `place` | planned (Slice 2) | `PlaceSearch` port |
+| `pin` | search and pin (Slice 2) | `createPin`, categories. Use cases `addPin`, `listPins`, `searchPlaces`. Adapters: localStorage `pak-mud:pins` ([0006](decisions/0006-pin-storage.md)), Nominatim ([0007](decisions/0007-nominatim-place-search.md)), in-memory (tests) |
 | `itinerary` | planned (Slice 3) | |
 | `budget` | planned (Slice 5) | |
 
 ## Ports
 - `TripRepository` (built, `src/features/trip/application/tripRepository.ts`): `list()` and `save()`. Failures are a `TripStorageError` with the problem `unavailable` or `corrupt`
-- `PlaceSearch`: place lookup (adapter: Nominatim or Photon)
+- `PinRepository` (built, `src/features/pin/application/pinRepository.ts`): `listByTrip()` and `save()`, failures are a `PinStorageError`
+- `PlaceSearch` (built, `src/features/pin/application/placeSearch.ts`): `search(query)`, failures are a `PlaceSearchError` (`too-short`, `unavailable`, `bad-response`)
 - `RoutingService`: travel time between stops (provider to be decided in Slice 4)
 
 ## Routes
@@ -38,11 +39,16 @@ import React, Next.js or outer layers, or use browser globals (`eslint.config.mj
 |---|---|---|
 | `/` | `src/app/page.tsx` | link to `/trips` |
 | `/trips` | `src/app/trips/page.tsx` | `TripList` (client) |
+| `/trips/[id]` | `src/app/trips/[id]/page.tsx` (runtime `params` inside `<Suspense>`, needed with Cache Components) | `TripPinsScreen` -> `PlaceSearchPanel` -> `PinForm`, plus `PinList` (client) |
 | `/trips/new` | `src/app/trips/new/page.tsx` | `NewTripForm` -> `TripForm` -> `DateField` (client; dd/mm/yyyy text plus the browser calendar) |
 
 Every page starts with `AppHeader` (the slate band). Pages are server components that only lay out the page. Client components load data in the browser,
 because localStorage only exists there. `adapters/browserTrips.ts` wires the real repository, plus a clock
 that supplies UUID ids (`generateId` in `src/shared/adapters/`: `randomUUID`, or random bytes on plain-HTTP pages) and the current time.
+
+## Shared code
+- `src/shared/adapters/versionedLocalStorage.ts`: one list under one key as `{ schemaVersion, <list> }`, with corrupt/unavailable errors mapped to each feature's error. Used by trips and pins.
+- `src/shared/adapters/generateId.ts`: UUIDs for trips and pins.
 
 ## Data flow
 `src/app` page -> feature `ui` component -> application use case -> port -> adapter.

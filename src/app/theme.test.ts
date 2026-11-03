@@ -53,6 +53,12 @@ const PAIRS: [string, string, number, string][] = [
   ["band-muted", "band", AA_TEXT, "band subtitle"],
   ["band-cta-foreground", "band-cta", AA_TEXT, "tan button label"],
   ["band-cta", "band", AA_NON_TEXT, "logo and band focus ring"],
+  ["cat-food", "card", AA_NON_TEXT, "food category dot"],
+  ["cat-temple", "card", AA_NON_TEXT, "temple category dot"],
+  ["cat-nature", "card", AA_NON_TEXT, "nature category dot"],
+  ["cat-shopping", "card", AA_NON_TEXT, "shopping category dot"],
+  ["cat-nightlife", "card", AA_NON_TEXT, "nightlife category dot"],
+  ["cat-stay", "card", AA_NON_TEXT, "stay category dot"],
 ];
 
 describe("token parser", () => {

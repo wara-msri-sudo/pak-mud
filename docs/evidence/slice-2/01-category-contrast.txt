@@ -1,0 +1,6 @@
+cat-food on card         6.76 6.99
+cat-temple on card       10.81 6.26
+cat-nature on card       6.15 7.23
+cat-shopping on card     8.05 6.35
+cat-nightlife on card    5.49 6.92
+cat-stay on card         7.44 7.53
