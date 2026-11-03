@@ -13,6 +13,6 @@ function uuidFromRandomBytes(source: Crypto): string {
  * randomUUID exists only in secure contexts (HTTPS or localhost). getRandomValues works everywhere,
  * so opening the app over plain HTTP on a local network still works.
  */
-export function generateTripId(source: Crypto = crypto): string {
+export function generateId(source: Crypto = crypto): string {
   return typeof source.randomUUID === "function" ? source.randomUUID() : uuidFromRandomBytes(source);
 }

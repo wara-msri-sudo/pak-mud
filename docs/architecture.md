@@ -42,7 +42,7 @@ import React, Next.js or outer layers, or use browser globals (`eslint.config.mj
 
 Every page starts with `AppHeader` (the slate band). Pages are server components that only lay out the page. Client components load data in the browser,
 because localStorage only exists there. `adapters/browserTrips.ts` wires the real repository, plus a clock
-that supplies UUID ids (`generateTripId`: `randomUUID`, or random bytes on plain-HTTP pages) and the current time.
+that supplies UUID ids (`generateId` in `src/shared/adapters/`: `randomUUID`, or random bytes on plain-HTTP pages) and the current time.
 
 ## Data flow
 `src/app` page -> feature `ui` component -> application use case -> port -> adapter.
