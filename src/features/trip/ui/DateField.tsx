@@ -21,9 +21,9 @@ export function DateField({ name, label, error }: DateFieldProps) {
   const [text, setText] = useState("");
   const textRef = useRef<HTMLInputElement>(null);
   const pickerRef = useRef<HTMLInputElement>(null);
-  const describedBy = useId();
-  const hintId = `${describedBy}-hint`;
-  const errorId = `${describedBy}-error`;
+  const idPrefix = useId();
+  const hintId = `${idPrefix}-hint`;
+  const errorId = `${idPrefix}-error`;
 
   function openCalendar() {
     try {
