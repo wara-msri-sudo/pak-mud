@@ -56,3 +56,4 @@ Next.js agent notes: @AGENTS.md
 - Architecture: docs/architecture.md
 - Decisions: docs/decisions/
 - Glossary: docs/glossary.md
+- Product (brief, scope, research plan): docs/product/

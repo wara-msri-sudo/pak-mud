@@ -21,12 +21,15 @@ Dependencies point inward only. ESLint enforces the domain rule: files under `do
 import React, Next.js or outer layers, or use browser globals (`eslint.config.mjs`).
 
 ## Features
+Slice plan and user stories: [product/mvp-scope.md](product/mvp-scope.md).
+
 | Feature | Status | Notes |
 |---|---|---|
-| `trip` | domain started | `countTripDays` (inclusive day count) |
+| `trip` | domain started (Slice 1) | `countTripDays` (inclusive day count). A trip has several destinations ([0004](decisions/0004-trips-with-several-destinations.md)) |
 | `place` | planned (Slice 2) | `PlaceSearch` port |
-| `itinerary` | planned (Slice 3) | |
-| `budget` | planned (Slice 5) | |
+| `itinerary` | planned (Slices 3–4) | Day plan, visited ticks, map and travel time |
+| `budget` | planned (Slice 5) | Planned costs |
+| `expense` | planned (Slices 6–7) | Real spending and split by traveller names ([0005](decisions/0005-track-real-spending-in-mvp.md)) |
 
 ## Planned ports
 - `TripRepository`: persistence (adapter: localStorage)
