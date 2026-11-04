@@ -1,0 +1,9 @@
+B8 compatibility check (slice 1.6)
+Stored data: domain and adapter untouched:
+(empty above = no changes)
+
+Old-data tests run unchanged:
+      Tests  36 passed (36)
+e2e 'a trip saved before dd/mm/yyyy still shows': see 04-final.txt
+
+UI changes (deliberate, approved by owner in chat): date fields text dd/mm/yyyy; list dates dd/mm/yyyy. Tests updated for this: TripForm.test.tsx inputs, TripList.test.tsx and formatTripDates.test.ts expected text, e2e date inputs (+ exact label match).

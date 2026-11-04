@@ -1,0 +1,251 @@
+
+ RUN  v5.1.0 /home/user/pak-mud
+
+ ❯ src/features/pin/ui/PlaceSearchPanel.test.tsx (0 test)
+ ❯ src/features/pin/ui/PinForm.test.tsx (0 test)
+ ❯ src/features/pin/ui/TripPinsScreen.test.tsx (0 test)
+ ❯ src/features/trip/ui/TripList.test.tsx (4 tests | 1 failed) 363ms
+   ❯ TripList (4)
+     × lists trips soonest first with destination, dates and day count 107ms
+ ❯ src/features/pin/ui/PinList.test.tsx (0 test)
+ ❯ src/features/pin/ui/formatBaht.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/pin/ui/PinForm.test.tsx [ src/features/pin/ui/PinForm.test.tsx ]
+Error: Failed to resolve import "./PinForm" from "src/features/pin/ui/PinForm.test.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/user/pak-mud/src/features/pin/ui/PinForm.test.tsx:5:24
+  2  |  import { describe, expect, it, vi } from "vitest";
+  3  |  import { PinStorageError } from "../application/pinRepository";
+  4  |  import { PinForm } from "./PinForm";
+     |                           ^
+  5  |  import { makePin, WAT_PHO } from "./testPins";
+  6  |  var _jsxFileName = "/home/user/pak-mud/src/features/pin/ui/PinForm.test.tsx";
+ ❯ TransformPluginContext._formatLog node_modules/vite/dist/node/chunks/node.js:8803:39
+ ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/node.js:8800:14
+ ❯ resolveId node_modules/vite/dist/node/chunks/node.js:26594:18
+ ❯ node_modules/vite/dist/node/chunks/node.js:26693:23
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/node.js:26666:4
+ ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/node.js:8582:14
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/node.js:20155:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  src/features/pin/ui/PinList.test.tsx [ src/features/pin/ui/PinList.test.tsx ]
+Error: Failed to resolve import "./PinList" from "src/features/pin/ui/PinList.test.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/user/pak-mud/src/features/pin/ui/PinList.test.tsx:3:24
+  1  |  import { render, screen } from "@testing-library/react";
+  2  |  import { describe, expect, it } from "vitest";
+  3  |  import { PinList } from "./PinList";
+     |                           ^
+  4  |  import { makePin } from "./testPins";
+  5  |  var _jsxFileName = "/home/user/pak-mud/src/features/pin/ui/PinList.test.tsx";
+ ❯ TransformPluginContext._formatLog node_modules/vite/dist/node/chunks/node.js:8803:39
+ ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/node.js:8800:14
+ ❯ resolveId node_modules/vite/dist/node/chunks/node.js:26594:18
+ ❯ node_modules/vite/dist/node/chunks/node.js:26693:23
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/node.js:26666:4
+ ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/node.js:8582:14
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/node.js:20155:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  src/features/pin/ui/PlaceSearchPanel.test.tsx [ src/features/pin/ui/PlaceSearchPanel.test.tsx ]
+Error: Failed to resolve import "./PlaceSearchPanel" from "src/features/pin/ui/PlaceSearchPanel.test.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/user/pak-mud/src/features/pin/ui/PlaceSearchPanel.test.tsx:5:33
+  2  |  import { describe, expect, it, vi } from "vitest";
+  3  |  import { PlaceSearchError } from "../application/placeSearch";
+  4  |  import { PlaceSearchPanel } from "./PlaceSearchPanel";
+     |                                    ^
+  5  |  import { makePin, WAT_ARUN, WAT_PHO } from "./testPins";
+  6  |  var _jsxFileName = "/home/user/pak-mud/src/features/pin/ui/PlaceSearchPanel.test.tsx";
+ ❯ TransformPluginContext._formatLog node_modules/vite/dist/node/chunks/node.js:8803:39
+ ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/node.js:8800:14
+ ❯ resolveId node_modules/vite/dist/node/chunks/node.js:26594:18
+ ❯ node_modules/vite/dist/node/chunks/node.js:26693:23
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/node.js:26666:4
+ ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/node.js:8582:14
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/node.js:20155:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  src/features/pin/ui/TripPinsScreen.test.tsx [ src/features/pin/ui/TripPinsScreen.test.tsx ]
+Error: Failed to resolve import "./TripPinsScreen" from "src/features/pin/ui/TripPinsScreen.test.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/user/pak-mud/src/features/pin/ui/TripPinsScreen.test.tsx:6:31
+  3  |  import { InMemoryTripRepository } from "@/features/trip/adapters/inMemoryTripRepository";
+  4  |  import { InMemoryPinRepository } from "../adapters/inMemoryPinRepository";
+  5  |  import { TripPinsScreen } from "./TripPinsScreen";
+     |                                  ^
+  6  |  import { makePin, WAT_ARUN } from "./testPins";
+  7  |  var _jsxFileName = "/home/user/pak-mud/src/features/pin/ui/TripPinsScreen.test.tsx";
+ ❯ TransformPluginContext._formatLog node_modules/vite/dist/node/chunks/node.js:8803:39
+ ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/node.js:8800:14
+ ❯ resolveId node_modules/vite/dist/node/chunks/node.js:26594:18
+ ❯ node_modules/vite/dist/node/chunks/node.js:26693:23
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/node.js:26666:4
+ ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/node.js:8582:14
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/node.js:20155:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  src/features/pin/ui/formatBaht.test.ts [ src/features/pin/ui/formatBaht.test.ts ]
+Error: Failed to resolve import "./formatBaht" from "src/features/pin/ui/formatBaht.test.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/user/pak-mud/src/features/pin/ui/formatBaht.test.ts:2:27
+  1  |  import { describe, expect, it } from "vitest";
+  2  |  import { formatBaht } from "./formatBaht";
+     |                              ^
+  3  |  describe("formatBaht", () => {
+  4  |  	it.each([
+ ❯ TransformPluginContext._formatLog node_modules/vite/dist/node/chunks/node.js:8803:39
+ ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/node.js:8800:14
+ ❯ resolveId node_modules/vite/dist/node/chunks/node.js:26594:18
+ ❯ node_modules/vite/dist/node/chunks/node.js:26693:23
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/node.js:26666:4
+ ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/node.js:8582:14
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/node.js:20155:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/trip/ui/TripList.test.tsx > TripList > lists trips soonest first with destination, dates and day count
+TestingLibraryElementError: Unable to find an accessible element with the role "link" and name `/Northern loop/`
+
+Here are the accessible roles:
+
+  list:
+
+  Name "":
+  [36m<ul[39m
+    [33mclass[39m=[32m"flex flex-col gap-3"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"card flex flex-col gap-0.5"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"card flex flex-col gap-0.5"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Northern loop":
+  [36m<h2[39m
+    [33mclass[39m=[32m"text-lg font-semibold break-words"[39m
+  [36m/>[39m
+
+  Name "Islands":
+  [36m<h2[39m
+    [33mclass[39m=[32m"text-lg font-semibold break-words"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"break-words"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-sm text-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"break-words"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-sm text-muted"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<ul[39m
+      [33mclass[39m=[32m"flex flex-col gap-3"[39m
+    [36m>[39m
+      [36m<li[39m
+        [33mclass[39m=[32m"card flex flex-col gap-0.5"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"text-lg font-semibold break-words"[39m
+        [36m>[39m
+          [0mNorthern loop[0m
+        [36m</h2>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"break-words"[39m
+        [36m>[39m
+          [0mChiang Mai[0m
+        [36m</p>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"text-sm text-muted"[39m
+        [36m>[39m
+          [0m01/12/2026 – 05/12/2026 · 5 days[0m
+        [36m</p>[39m
+      [36m</li>[39m
+      [36m<li[39m
+        [33mclass[39m=[32m"card flex flex-col gap-0.5"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"text-lg font-semibold break-words"[39m
+        [36m>[39m
+          [0mIslands[0m
+        [36m</h2>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"break-words"[39m
+        [36m>[39m
+          [0mKrabi[0m
+        [36m</p>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"text-sm text-muted"[39m
+        [36m>[39m
+          [0m10/01/2027 – 14/01/2027 · 5 days[0m
+        [36m</p>[39m
+      [36m</li>[39m
+    [36m</ul>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/features/trip/ui/TripList.test.tsx:48:19
+     46|       "IslandsKrabi10/01/2027 – 14/01/2027 · 5 days",
+     47|     ]);
+     48|     expect(screen.getByRole("link", { name: /Northern loop/ })).toHave…
+       |                   ^
+     49|     // The "New trip" action lives on the page header band, not in the…
+     50|     expect(screen.queryByRole("link", { name: "New trip" })).not.toBeI…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  6 failed | 16 passed (22)
+      Tests  1 failed | 151 passed (152)
+   Start at  11:37:04
+   Duration  12.11s (environment 73%, setup 17%, tests 8%, import 1%, transform 1%, worker 1%)
+
+Environment  jsdom was created 22 times · 21.53s total, 73% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+
+exit=1

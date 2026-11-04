@@ -36,10 +36,10 @@ Nothing in the stages below is tied to a language, framework, or repository. Pro
 1  Request contract            -> GATE: human approves contract
 2  Playbook
 3  Context and design          -> GATE: human decides options
-4  Implement (TDD, clean code)    each step: drift check + checkpoint commit
+4  Implement (Test first (TDD), clean code, small steps)    each step: drift check + checkpoint commit
 5  Verify
      5A Real behavior
-     5B Change review (B1-B7)
+     5B Change review (B1-B8, B8 = backward compatibility)
    Outcome: PASS | FAIL (fix, rerun, max 3 loops) | BLOCKED
    Self-audit
 6  Reviewable handoff
@@ -65,7 +65,7 @@ A gate means the agent **stops and waits** for the human.
 | Scope change | Any stage | No |
 | Weakening a check | Any stage | No |
 
-**Risky or irreversible actions** include: database migrations, deleting data or files, changing public APIs or contracts, adding dependencies, touching auth, payments or secrets, force-pushing, rewriting history, deploying.
+**Risky or irreversible actions** include: database migrations, deleting data or files, changing public APIs or contracts, any breaking change to a compatibility surface (see B8), adding dependencies, touching auth, payments or secrets, force-pushing, rewriting history, deploying.
 
 If the human is unreachable, the agent does preparatory work, lists the open decisions, and stops. It never guesses.
 
@@ -81,7 +81,7 @@ Before any change, run the project's tests, lint, type check and build (commands
 Write, in a few lines:
 - **User story:** As a `<who>`, I want `<what>`, so that `<why>`. For bugs: expected vs actual behavior.
 - **Acceptance criteria:** numbered, testable, Given / When / Then. Each must be observable.
-- **Constraints:** what must not change (files, APIs, behaviors, styles).
+- **Constraints:** what must not change (files, APIs, behaviors, styles), including anything existing consumers rely on.
 - **Out of scope:** what will deliberately not be done.
 - **Assumptions:** anything guessed.
 - **Definition of Done:** default list below, extended per project.
@@ -120,7 +120,7 @@ Optional delegation for large tasks: split independent work across parallel agen
 
 **GATE:** human decides any architecture decision. Agent does not write code that depends on an open decision.
 
-### Stage 4. Implement (clean code, small steps)
+### Stage 4. Implement (Test first (TDD), clean code, small steps)
 Red / green / refactor, one acceptance criterion at a time:
 1. **Red:** write or update a test for one criterion. See it fail for the right reason.
 2. **Green:** write the simplest code that passes.
@@ -200,6 +200,36 @@ Run after Part A. Rerun tests after any edit made here. Checks that do not apply
 - Interrupted operations (crash, restart, half-finished write) recover to a consistent state.
 - Logs and metrics are enough to diagnose the failure.
 
+**B8. Backward compatibility.** Make sure the change does not break existing consumers, data, or deployments.
+
+*Identify the compatibility surfaces the change touches:*
+- Public API: endpoints, request and response shapes, status codes, error formats, headers, pagination.
+- Library or SDK: exported functions, types, signatures, behavior.
+- CLI: commands, flags, output format, exit codes.
+- Data: database schema, migrations, stored file or cache formats, serialized messages and events.
+- Configuration: env vars, config keys, defaults, feature flags.
+- Behavior that other code or users depend on, even if undocumented (ordering, defaults, timing).
+
+*Rules (additive by default):*
+- Add optional fields, endpoints and options. Do not remove, rename, retype, or change the meaning of existing ones.
+- Do not tighten validation on inputs that were previously accepted.
+- Keep existing defaults. A new required input needs a default.
+- Keep error shapes and status codes stable.
+
+*Checks:*
+- **Contract diff:** compare the interface before and after (API schema diff, type or signature diff, snapshot of the CLI help and output). List every difference and classify it as additive or breaking.
+- **Old-consumer tests:** run the previous test suite, contract tests, or recorded requests unchanged against the new code. They must pass without edits. A test edited to make it pass counts as weakening a check.
+- **Data and migrations:** use expand, migrate, contract. The new schema works with the previous app version (rolling deploys, rollbacks). Test the migration on a copy of realistic existing data. Provide a rollback path and confirm it works.
+- **Upgrade path:** existing config, stored data, and clients keep working with no manual steps, or the steps are documented.
+- **Deprecation:** to remove or replace something, mark it deprecated, document the replacement, and remove it in a later release, not in the same change.
+- **Versioning:** follow the project's scheme (for example semantic versioning). A breaking change means a new version, a migration guide, and a changelog entry.
+
+*Breaking changes are a human gate:* if a breaking change is unavoidable, stop, list the options with pros and cons (for example version the API, add a compatibility shim, or migrate consumers), and wait for the human decision. Record it in a decision note.
+
+*Evidence:* contract diff output, results of the old-consumer tests, migration test run, rollback test run.
+
+*Result:* any unapproved breaking change is a FAIL. Mark n/a with a reason only when the change touches no compatibility surface.
+
 #### Outcome
 - **PASS:** Part A evidence and every applicable Part B check are proven. State which and where the evidence lives.
 - **FAIL:** name the defect with evidence. Return to stage 4, fix, rerun the whole verification. **Maximum 3 loops.** After that, stop and report what was tried instead of thrashing.
@@ -223,6 +253,7 @@ security_findings:    <found/fixed, or none and what was checked>
 performance:          <before/after numbers, or n/a with reason>
 concurrency:          <shared state reviewed, parallel test result, or n/a>
 resilience:           <failure cases tested, or n/a>
+compatibility:        <surfaces touched, contract diff (additive/breaking), old-consumer test result, migration and rollback result, or n/a>
 architecture_changes: <decision note paths + doc sections updated, or none>
 unverified_checks:    <what still needs verification>
 remaining_risks:      <known gaps>
@@ -434,6 +465,9 @@ Copy this section into each project and fill it in. The workflow reads from here
 - Build:
 - Dependency audit:
 - Performance / profiling:
+- Contract / schema diff (API schema, types, CLI snapshot):
+- Old-consumer / contract tests:
+- Migration test and rollback:
 
 ## Verification surface
 - How to drive the app (UI / CLI / API, tools, test accounts):
@@ -446,6 +480,14 @@ Copy this section into each project and fill it in. The workflow reads from here
 
 ## Extra Definition of Done items
 -
+
+## Compatibility surfaces (what must not break)
+- Public API / consumers:
+- Library exports:
+- CLI:
+- Data formats and schema:
+- Config and env vars:
+- Versioning scheme and deprecation policy:
 
 ## Performance budgets
 -
@@ -501,7 +543,7 @@ The same mistake happened: <describe>. Propose a guardrail using the ladder.
 - [ ] Architecture decisions asked, answered, documented
 - [ ] Built with red / green / refactor, small commits
 - [ ] Real behavior verified with evidence
-- [ ] B1-B7 done or marked n/a with reason
+- [ ] B1-B8 done or marked n/a with reason (including backward compatibility)
 - [ ] Outcome PASS, with no checks weakened
 - [ ] Self-audit done
 - [ ] Handoff complete

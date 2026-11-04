@@ -1,0 +1,289 @@
+
+ RUN  v5.1.0 /home/user/pak-mud
+
+ ❯ src/app/theme.test.ts (34 tests | 22 failed) 34ms
+   ❯ light theme contrast (16)
+     × foreground on card meets 4.5:1 (card text) 7ms
+     × foreground on surface meets 4.5:1 (quiet panel text) 1ms
+     × muted on card meets 4.5:1 (secondary text on cards) 1ms
+     × accent on card meets 4.5:1 (links on cards) 1ms
+     × accent-foreground on accent meets 4.5:1 (slate button label) 1ms
+     × danger on card meets 4.5:1 (errors on cards) 1ms
+     × band-foreground on band meets 4.5:1 (band title) 1ms
+     × band-muted on band meets 4.5:1 (band subtitle) 0ms
+     × band-cta-foreground on band-cta meets 4.5:1 (tan button label) 1ms
+     × band-cta on band meets 3:1 (logo and band focus ring) 0ms
+     × border on background meets 1:1 (decorative card border (no minimum)) 0ms
+   ❯ dark theme contrast (16)
+     × foreground on card meets 4.5:1 (card text) 0ms
+     × foreground on surface meets 4.5:1 (quiet panel text) 0ms
+     × muted on card meets 4.5:1 (secondary text on cards) 0ms
+     × accent on card meets 4.5:1 (links on cards) 0ms
+     × accent-foreground on accent meets 4.5:1 (slate button label) 0ms
+     × danger on card meets 4.5:1 (errors on cards) 0ms
+     × band-foreground on band meets 4.5:1 (band title) 0ms
+     × band-muted on band meets 4.5:1 (band subtitle) 0ms
+     × band-cta-foreground on band-cta meets 4.5:1 (tan button label) 0ms
+     × band-cta on band meets 3:1 (logo and band focus ring) 0ms
+     × border on background meets 1:1 (decorative card border (no minimum)) 0ms
+ ❯ src/features/trip/ui/TripList.test.tsx (4 tests | 1 failed) 360ms
+   ❯ TripList (4)
+     × lists trips soonest first with destination, dates and day count 50ms
+ ❯ src/components/AppHeader.test.tsx (0 test)
+ ❯ src/app/page.test.tsx (2 tests | 1 failed) 312ms
+   ❯ Home page (2)
+     × shows the Pak Mud logo and the trip-planning headline 275ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/AppHeader.test.tsx [ src/components/AppHeader.test.tsx ]
+Error: Failed to resolve import "./AppHeader" from "src/components/AppHeader.test.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/user/pak-mud/src/components/AppHeader.test.tsx:3:26
+  1  |  import { render, screen } from "@testing-library/react";
+  2  |  import { describe, expect, it } from "vitest";
+  3  |  import { AppHeader } from "./AppHeader";
+     |                             ^
+  4  |  var _jsxFileName = "/home/user/pak-mud/src/components/AppHeader.test.tsx";
+  5  |  import { jsxDEV as _jsxDEV } from "react/jsx-dev-runtime";
+ ❯ TransformPluginContext._formatLog node_modules/vite/dist/node/chunks/node.js:8803:39
+ ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/node.js:8800:14
+ ❯ resolveId node_modules/vite/dist/node/chunks/node.js:26594:18
+ ❯ node_modules/vite/dist/node/chunks/node.js:26693:23
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/node.js:26666:4
+ ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/node.js:8582:14
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/node.js:20155:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/25]⎯
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 24 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/app/page.test.tsx > Home page > shows the Pak Mud logo and the trip-planning headline
+TestingLibraryElementError: Unable to find an accessible element with the role "link" and name "Pak Mud"
+
+Here are the accessible roles:
+
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center gap-4 px-4 py-24 sm:px-8"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Pak Mud":
+  [36m<h1[39m
+    [33mclass[39m=[32m"text-5xl font-bold tracking-tight text-foreground"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-xl text-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"max-w-md text-base leading-7 text-muted"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "Plan a trip":
+  [36m<a[39m
+    [33mclass[39m=[32m"button-primary mt-4 self-start"[39m
+    [33mhref[39m=[32m"/trips"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<main[39m
+      [33mclass[39m=[32m"mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center gap-4 px-4 py-24 sm:px-8"[39m
+    [36m>[39m
+      [36m<h1[39m
+        [33mclass[39m=[32m"text-5xl font-bold tracking-tight text-foreground"[39m
+      [36m>[39m
+        [0mPak Mud[0m
+      [36m</h1>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"text-xl text-muted"[39m
+      [36m>[39m
+        [0mPlan your Thailand trip[0m
+      [36m</p>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"max-w-md text-base leading-7 text-muted"[39m
+      [36m>[39m
+        [0mPin the places you want to see, then turn your pins into a day-by-day plan.[0m
+      [36m</p>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m"button-primary mt-4 self-start"[39m
+        [33mhref[39m=[32m"/trips"[39m
+      [36m>[39m
+        [0mPlan a trip[0m
+      [36m</a>[39m
+    [36m</main>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/app/page.test.tsx:9:19
+      7|     render(<Home />);
+      8|
+      9|     expect(screen.getByRole("link", { name: "Pak Mud" })).toBeInTheDoc…
+       |                   ^
+     10|     expect(
+     11|       screen.getByRole("heading", { level: 1, name: "Plan your Thailan…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/25]⎯
+
+ FAIL  src/app/theme.test.ts > light theme contrast > foreground on card meets 4.5:1 (card text)
+ FAIL  src/app/theme.test.ts > light theme contrast > muted on card meets 4.5:1 (secondary text on cards)
+ FAIL  src/app/theme.test.ts > light theme contrast > accent on card meets 4.5:1 (links on cards)
+ FAIL  src/app/theme.test.ts > light theme contrast > danger on card meets 4.5:1 (errors on cards)
+ FAIL  src/app/theme.test.ts > dark theme contrast > foreground on card meets 4.5:1 (card text)
+ FAIL  src/app/theme.test.ts > dark theme contrast > muted on card meets 4.5:1 (secondary text on cards)
+ FAIL  src/app/theme.test.ts > dark theme contrast > accent on card meets 4.5:1 (links on cards)
+ FAIL  src/app/theme.test.ts > dark theme contrast > danger on card meets 4.5:1 (errors on cards)
+AssertionError: missing token --card: expected undefined to be defined
+ ❯ src/app/theme.test.ts:58:49
+     56|   it.each(PAIRS)("%s on %s meets %s:1 (%s)", (fg, bg, minimum) => {
+     57|     expect(tokens[fg], `missing token --${fg}`).toBeDefined();
+     58|     expect(tokens[bg], `missing token --${bg}`).toBeDefined();
+       |                                                 ^
+     59|     expect(contrastRatio(tokens[fg], tokens[bg])).toBeGreaterThanOrEqu…
+     60|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/25]⎯
+
+ FAIL  src/app/theme.test.ts > light theme contrast > foreground on surface meets 4.5:1 (quiet panel text)
+ FAIL  src/app/theme.test.ts > dark theme contrast > foreground on surface meets 4.5:1 (quiet panel text)
+AssertionError: missing token --surface: expected undefined to be defined
+ ❯ src/app/theme.test.ts:58:49
+     56|   it.each(PAIRS)("%s on %s meets %s:1 (%s)", (fg, bg, minimum) => {
+     57|     expect(tokens[fg], `missing token --${fg}`).toBeDefined();
+     58|     expect(tokens[bg], `missing token --${bg}`).toBeDefined();
+       |                                                 ^
+     59|     expect(contrastRatio(tokens[fg], tokens[bg])).toBeGreaterThanOrEqu…
+     60|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/25]⎯
+
+ FAIL  src/app/theme.test.ts > light theme contrast > accent-foreground on accent meets 4.5:1 (slate button label)
+ FAIL  src/app/theme.test.ts > dark theme contrast > accent-foreground on accent meets 4.5:1 (slate button label)
+AssertionError: missing token --accent-foreground: expected undefined to be defined
+ ❯ src/app/theme.test.ts:57:49
+     55| ])("%s theme contrast", (_mode, tokens) => {
+     56|   it.each(PAIRS)("%s on %s meets %s:1 (%s)", (fg, bg, minimum) => {
+     57|     expect(tokens[fg], `missing token --${fg}`).toBeDefined();
+       |                                                 ^
+     58|     expect(tokens[bg], `missing token --${bg}`).toBeDefined();
+     59|     expect(contrastRatio(tokens[fg], tokens[bg])).toBeGreaterThanOrEqu…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/25]⎯
+
+ FAIL  src/app/theme.test.ts > light theme contrast > band-foreground on band meets 4.5:1 (band title)
+ FAIL  src/app/theme.test.ts > dark theme contrast > band-foreground on band meets 4.5:1 (band title)
+AssertionError: missing token --band-foreground: expected undefined to be defined
+ ❯ src/app/theme.test.ts:57:49
+     55| ])("%s theme contrast", (_mode, tokens) => {
+     56|   it.each(PAIRS)("%s on %s meets %s:1 (%s)", (fg, bg, minimum) => {
+     57|     expect(tokens[fg], `missing token --${fg}`).toBeDefined();
+       |                                                 ^
+     58|     expect(tokens[bg], `missing token --${bg}`).toBeDefined();
+     59|     expect(contrastRatio(tokens[fg], tokens[bg])).toBeGreaterThanOrEqu…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/25]⎯
+
+ FAIL  src/app/theme.test.ts > light theme contrast > band-muted on band meets 4.5:1 (band subtitle)
+ FAIL  src/app/theme.test.ts > dark theme contrast > band-muted on band meets 4.5:1 (band subtitle)
+AssertionError: missing token --band-muted: expected undefined to be defined
+ ❯ src/app/theme.test.ts:57:49
+     55| ])("%s theme contrast", (_mode, tokens) => {
+     56|   it.each(PAIRS)("%s on %s meets %s:1 (%s)", (fg, bg, minimum) => {
+     57|     expect(tokens[fg], `missing token --${fg}`).toBeDefined();
+       |                                                 ^
+     58|     expect(tokens[bg], `missing token --${bg}`).toBeDefined();
+     59|     expect(contrastRatio(tokens[fg], tokens[bg])).toBeGreaterThanOrEqu…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/25]⎯
+
+ FAIL  src/app/theme.test.ts > light theme contrast > band-cta-foreground on band-cta meets 4.5:1 (tan button label)
+ FAIL  src/app/theme.test.ts > dark theme contrast > band-cta-foreground on band-cta meets 4.5:1 (tan button label)
+AssertionError: missing token --band-cta-foreground: expected undefined to be defined
+ ❯ src/app/theme.test.ts:57:49
+     55| ])("%s theme contrast", (_mode, tokens) => {
+     56|   it.each(PAIRS)("%s on %s meets %s:1 (%s)", (fg, bg, minimum) => {
+     57|     expect(tokens[fg], `missing token --${fg}`).toBeDefined();
+       |                                                 ^
+     58|     expect(tokens[bg], `missing token --${bg}`).toBeDefined();
+     59|     expect(contrastRatio(tokens[fg], tokens[bg])).toBeGreaterThanOrEqu…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/25]⎯
+
+ FAIL  src/app/theme.test.ts > light theme contrast > band-cta on band meets 3:1 (logo and band focus ring)
+ FAIL  src/app/theme.test.ts > dark theme contrast > band-cta on band meets 3:1 (logo and band focus ring)
+AssertionError: missing token --band-cta: expected undefined to be defined
+ ❯ src/app/theme.test.ts:57:49
+     55| ])("%s theme contrast", (_mode, tokens) => {
+     56|   it.each(PAIRS)("%s on %s meets %s:1 (%s)", (fg, bg, minimum) => {
+     57|     expect(tokens[fg], `missing token --${fg}`).toBeDefined();
+       |                                                 ^
+     58|     expect(tokens[bg], `missing token --${bg}`).toBeDefined();
+     59|     expect(contrastRatio(tokens[fg], tokens[bg])).toBeGreaterThanOrEqu…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/25]⎯
+
+ FAIL  src/app/theme.test.ts > light theme contrast > border on background meets 1:1 (decorative card border (no minimum))
+ FAIL  src/app/theme.test.ts > dark theme contrast > border on background meets 1:1 (decorative card border (no minimum))
+AssertionError: missing token --border: expected undefined to be defined
+ ❯ src/app/theme.test.ts:57:49
+     55| ])("%s theme contrast", (_mode, tokens) => {
+     56|   it.each(PAIRS)("%s on %s meets %s:1 (%s)", (fg, bg, minimum) => {
+     57|     expect(tokens[fg], `missing token --${fg}`).toBeDefined();
+       |                                                 ^
+     58|     expect(tokens[bg], `missing token --${bg}`).toBeDefined();
+     59|     expect(contrastRatio(tokens[fg], tokens[bg])).toBeGreaterThanOrEqu…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/25]⎯
+
+ FAIL  src/features/trip/ui/TripList.test.tsx > TripList > lists trips soonest first with destination, dates and day count
+Error: [2mexpect([22m[31melement[39m[2m).not.toBeInTheDocument()[22m
+
+[31mexpected document not to contain element, found <a
+  class="button-primary self-start"
+  href="/trips/new"
+>
+  New trip
+</a> instead[39m
+ ❯ src/features/trip/ui/TripList.test.tsx:49:66
+     47|     ]);
+     48|     // The "New trip" action lives on the page header band, not in the…
+     49|     expect(screen.queryByRole("link", { name: "New trip" })).not.toBeI…
+       |                                                                  ^
+     50|   });
+     51|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/25]⎯
+
+
+ Test Files  4 failed | 7 passed (11)
+      Tests  24 failed | 59 passed (83)
+   Start at  10:11:35
+   Duration  6.24s (environment 71%, setup 15%, tests 8%, transform 4%, import 1%)
+
+Environment  jsdom was created 11 times · 11.05s total, 71% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+
+exit=1

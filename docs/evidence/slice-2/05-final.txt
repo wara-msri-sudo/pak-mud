@@ -1,0 +1,95 @@
+commit=4bc6c5f
+### npm run lint
+
+> pak-mud@0.1.0 lint
+> eslint .
+
+exit=0
+### npm run typecheck
+
+> pak-mud@0.1.0 typecheck
+> tsc --noEmit
+
+exit=0
+### npm test
+
+> pak-mud@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /home/user/pak-mud
+
+
+ Test Files  22 passed (22)
+      Tests  175 passed (175)
+   Start at  11:42:28
+   Duration  11.98s (environment 69%, setup 15%, tests 14%, import 2%, transform 1%)
+
+Environment  jsdom was created 22 times · 20.75s total, 69% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+
+exit=0
+### npm run build
+
+> pak-mud@0.1.0 build
+> next build
+
+▲ Next.js 16.4.4 (Turbopack)
+✓ Running next.config.ts took 47ms
+- Cache Components enabled
+- Partial Prefetching enabled
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 512ms
+  Running TypeScript ...
+  Finished TypeScript in 2.4s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/7) ...
+  Generating static pages using 3 workers (1/7) 
+  Generating static pages using 3 workers (3/7) 
+  Generating static pages using 3 workers (5/7) 
+✓ Generating static pages using 3 workers (7/7) in 478ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /trips
+├   /trips/[id]
+│ └ ◐ /trips/[id]
+└ ○ /trips/new
+
+
+○  (Static)             prerendered as static content
+◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content
+
+exit=0
+### npm run test:e2e
+
+> pak-mud@0.1.0 test:e2e
+> playwright test
+
+
+Running 12 tests using 2 workers
+
+  ✓   1 [chromium] › e2e/home.spec.ts:3:5 › home page introduces Pak Mud (964ms)
+[WebServer] Route /trips is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+[WebServer] Route /trips/[id] is rendering with server caches disabled. For this navigation, Component Metadata in React DevTools will not accurately reflect what is statically prerenderable and runtime prefetchable. See more info here: https://nextjs.org/docs/messages/cache-bypass-in-dev
+  ✓   3 [chromium] › e2e/pins.spec.ts:82:5 › an invalid cost shows an error and saves nothing (3.8s)
+  ✓   2 [chromium] › e2e/pins.spec.ts:46:5 › a visitor searches, pins a place, and still sees it after a reload (5.7s)
+  ✓   4 [chromium] › e2e/pins.spec.ts:97:5 › a failed search explains itself (2.2s)
+  ✓   5 [chromium] › e2e/pins.spec.ts:107:5 › an unknown trip shows a way back (1.7s)
+  ✓   7 [chromium] › e2e/trips.spec.ts:38:5 › an invalid form shows errors and saves nothing (2.1s)
+  ✓   8 [chromium] › e2e/trips.spec.ts:51:5 › corrupt saved data shows a notice instead of crashing (1.7s)
+  ✓   6 [chromium] › e2e/trips.spec.ts:17:5 › a visitor creates trips and still sees them after a reload (4.4s)
+  ✓  10 [chromium] › e2e/trips.spec.ts:70:5 › a trip saved before dd/mm/yyyy still shows, in the new format (1.2s)
+  ✓   9 [chromium] › e2e/trips.spec.ts:61:5 › the header band offers a new trip and a way back (1.8s)
+  ✓  11 [chromium] › e2e/trips.spec.ts:83:5 › the calendar button fills the date as dd/mm/yyyy (1.3s)
+  ✓  12 [chromium] › e2e/trips.spec.ts:91:5 › a date typed month-first asks for dd/mm/yyyy (1.3s)
+
+  12 passed (17.6s)
+exit=0
+### npm audit --omit=dev
+found 0 vulnerabilities
+exit=0

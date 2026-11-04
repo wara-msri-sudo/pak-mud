@@ -1,6 +1,7 @@
 # MVP brief
 
-Agreed with the project owner on 2026-11-04. The slices are in [mvp-scope.md](mvp-scope.md), and how we check our guesses is in [research-plan.md](research-plan.md).
+Agreed with the project owner on 2026-11-04. The slices are in the [roadmap](../roadmap.md), and how we check our
+guesses is in [research-plan.md](research-plan.md).
 
 ## One line
 Pak Mud (ปักหมุด, "drop a pin") turns a pile of saved places into a day-by-day plan for a trip in Thailand, and tracks what the trip really costs.
@@ -23,13 +24,15 @@ The first user is the project owner, on a real trip 3–6 months from November 2
 - Money is hard to follow: what we planned to spend, what we really spent, and who owes whom.
 
 ## What the MVP lets a user do
-1. Create a trip with several destinations, each with its own dates (for example Bangkok 8–11 Jan, then Chiang Mai 12–16 Jan).
-2. Search Thai places and pin them. The pins are the trip's bucket list.
-3. Put pins into days, in order, and tick each one off when visited.
-4. See a day on a map, with travel time between stops.
-5. See the planned cost per day, per destination and for the trip, in THB.
-6. Log real spending as it happens, by category, and compare it with the plan.
-7. Split costs with travel companions (names only) and see who owes whom.
+| # | A user can… | Slice |
+|---|---|---|
+| 1 | Create a trip with several destinations, each with its own dates (for example Bangkok 8–11 Jan, then Chiang Mai 12–16 Jan) | 1 (built), 2.5 |
+| 2 | Search Thai places and pin them; the pins are the trip's bucket list | 2 (built) |
+| 3 | Put pins into days, in order, and tick each one off when visited | 3 |
+| 4 | See a day on a map, with the route between stops | 4 |
+| 5 | See the estimated cost per day, per destination and for the trip, in THB | 5 |
+| 6 | Log real spending as it happens, by category, and compare it with the plan | 6 |
+| 7 | Record who paid, split costs with travel companions (names only) and settle up | 7 |
 
 ## Design principles
 - **Phone first.** People plan on their phone and use it on the trip. Design at 390 px first, then scale up.
@@ -63,15 +66,15 @@ These are guesses. Check them in interviews ([research-plan.md](research-plan.md
 | **The owner** (MVP focus) | About 2 weeks, several cities | Turning saved places into days; tracking money on the trip | Everything in the MVP list above |
 | The first-timer | 10–14 days: Bangkok, the north, an island | What is near what; how much fits in a day | Pins on a map; easy day planning |
 | The returning explorer | 1–2 weeks somewhere less known | Place names spelled many ways; places search can't find | Search by English, romanised and Thai names |
-| The group organiser | 5–7 days, 3–6 people | A pace that suits everyone; cost per person; who owes whom | Planned budget; split costs |
+| The group organiser | 5–7 days, 3–6 people | A pace that suits everyone; cost per person; who owes whom | Budget summary; who paid and settle up |
 
 ## Journey
 | Stage | What they do | Pain | Pak Mud MVP |
 |---|---|---|---|
-| 1. Collect | Save places from posts, videos, friends | Ideas spread over many apps | Search and pin (Slice 2) |
-| 2. Shape | Pick cities and dates, book travel | Hard to see distances | Destinations with dates (Slice 1), map (Slice 4) |
-| 3. Plan days | Decide what to do each day | What fits in a day? | Days, order, times, travel time, planned cost (Slices 3–5) |
-| 4. On the trip | Follow and change the plan, pay for things | Plan on a laptop, money in a spreadsheet | Phone view, tick off, log spending, split (Slices 3, 6, 7) |
+| 1. Collect | Save places from posts, videos, friends | Ideas spread over many apps | Search and pin (Slice 2, built) |
+| 2. Shape | Pick cities and dates, book travel | Hard to see distances | Destinations with dates (Slice 2.5), map (Slice 4) |
+| 3. Plan days | Decide what to do each day | What fits in a day? | Days, order, times, route, estimated cost (Slices 3–5) |
+| 4. On the trip | Follow and change the plan, pay for things | Plan on a laptop, money in a spreadsheet | Phone view, tick off, spending log, who paid (Slices 3, 6, 7) |
 | 5. After | Share and remember | Nothing to hand over | Later (V2 sharing) |
 
 ## Interview with the owner (2026-11-04)
@@ -83,10 +86,10 @@ These are guesses. Check them in interviews ([research-plan.md](research-plan.md
 | Must-haves | Trips with dates, search and pin places, day plan and map, budget in THB |
 | Track | Bucket list (tick places off), planned budget, real spending |
 | Real spending | Each expense, categories, daily totals, split with people |
-| Cities | Several per trip, each with its own dates ([0004](../decisions/0004-trips-with-several-destinations.md)) |
+| Cities | Several per trip, each with its own dates, before Slice 3 ([0008](../decisions/0008-trips-with-several-destinations.md)) |
 | Device | Phone first |
 | Sharing | Not needed in the MVP; 0002 stays |
-| Split | Companions are names on the owner's phone ([0005](../decisions/0005-track-real-spending-in-mvp.md)) |
-| Build order | Plan first, spending after; split last |
+| Split | Companions are names on the owner's phone ([0009](../decisions/0009-track-real-spending-in-mvp.md)) |
+| Build order | Plan first, spending log after, who paid last |
 | Success | The owner's real trip, then 2–5 friends |
 | Time | Trip in 3–6 months; 1–2 hours a day |

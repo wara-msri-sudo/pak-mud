@@ -1,0 +1,1385 @@
+
+ RUN  v5.1.0 /home/user/pak-mud
+
+ ❯ src/features/trip/ui/DateField.test.tsx (8 tests | 3 failed) 291ms
+   ❯ DateField (8)
+     × uses the normal keyboard on phones, which has the / key 13ms
+     × empties the field when the calendar is cleared 18ms
+     × describes the error and keeps the format hint when there is one 15ms
+ ❯ src/features/trip/ui/TripForm.test.tsx (8 tests | 5 failed) 3769ms
+   ❯ TripForm (8)
+     × shows an error next to each invalid field and saves nothing 112ms
+     × asks for dd/mm/yyyy when a date is typed as month first, and saves nothing 1038ms
+     × asks for dd/mm/yyyy when a date is typed as an impossible day, and saves nothing 1038ms
+     × asks for dd/mm/yyyy when a date is typed as an ISO date, and saves nothing 1048ms
+     × clears old field errors when a later save fails 88ms
+ ❯ src/app/theme.test.ts (31 tests | 1 failed) 24ms
+   ❯ token parser (1)
+     × reads the light and dark blocks separately 13ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/app/theme.test.ts > token parser > reads the light and dark blocks separately
+AssertionError: expected '#0e1519' to be '#f5f7f8' // Object.is equality
+
+Expected: "#f5f7f8"
+Received: "#0e1519"
+
+ ❯ src/app/theme.test.ts:52:36
+     50| describe("token parser", () => {
+     51|   it("reads the light and dark blocks separately", () => {
+     52|     expect(lightTokens.background).toBe("#f5f7f8");
+       |                                    ^
+     53|     expect(darkTokens.background).toBe("#0e1519");
+     54|     expect(lightTokens).not.toEqual(darkTokens);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  src/features/trip/ui/DateField.test.tsx > DateField > uses the normal keyboard on phones, which has the / key
+Error: [2mexpect([22m[31melement[39m[2m).not.toHaveAttribute([22m[32m[32m"inputmode"[32m[39m[2m, [22m[32m[32m"numeric"[32m[39m[2m) // element.getAttribute("inputmode") === "numeric"[22m
+
+Expected the element not to have attribute:
+[32m  inputmode="numeric"[39m
+Received:
+[31m  inputmode="numeric"[39m
+ ❯ src/features/trip/ui/DateField.test.tsx:25:23
+     23|     const { field } = renderField();
+     24|
+     25|     expect(field).not.toHaveAttribute("inputmode", "numeric");
+       |                       ^
+     26|   });
+     27|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  src/features/trip/ui/DateField.test.tsx > DateField > empties the field when the calendar is cleared
+Error: [2mexpect([22m[31melement[39m[2m).toHaveValue()[22m
+
+Expected the element to have value:
+[32m[39m
+Received:
+[31m  01/12/2026[39m
+ ❯ src/features/trip/ui/DateField.test.tsx:34:19
+     32|     fireEvent.change(picker, { target: { value: "" } });
+     33|
+     34|     expect(field).toHaveValue("");
+       |                   ^
+     35|   });
+     36|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  src/features/trip/ui/DateField.test.tsx > DateField > describes the error and keeps the format hint when there is one
+Error: [2mexpect([22m[31melement[39m[2m).toHaveAccessibleDescription()[22m
+
+Expected element to have accessible description:
+[32m  Enter an end date Format: dd/mm/yyyy[39m
+Received:
+[31m  Enter an end date[39m
+ ❯ src/features/trip/ui/DateField.test.tsx:73:47
+     71|     render(<DateField name="endDate" label="End date" error="Enter an …
+     72|
+     73|     expect(screen.getByLabelText("End date")).toHaveAccessibleDescript…
+       |                                               ^
+     74|       "Enter an end date Format: dd/mm/yyyy",
+     75|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  src/features/trip/ui/TripForm.test.tsx > TripForm > shows an error next to each invalid field and saves nothing
+Error: [2mexpect([22m[31melement[39m[2m).toHaveAccessibleDescription()[22m
+
+Expected element to have accessible description:
+[32m  End date must be on or after the start date Format: dd/mm/yyyy[39m
+Received:
+[31m  End date must be on or after the start date[39m
+ ❯ src/features/trip/ui/TripForm.test.tsx:54:47
+     52|     expect(screen.getByLabelText("Trip name")).toHaveAccessibleDescrip…
+     53|     expect(screen.getByLabelText("Destination")).toHaveAccessibleDescr…
+     54|     expect(screen.getByLabelText("End date")).toHaveAccessibleDescript…
+       |                                               ^
+     55|       "End date must be on or after the start date Format: dd/mm/yyyy",
+     56|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  src/features/trip/ui/TripForm.test.tsx > TripForm > asks for dd/mm/yyyy when a date is typed as month first, and saves nothing
+TestingLibraryElementError: Unable to find an element with the text: Enter the date as dd/mm/yyyy, for example 01/12/2026. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<form[39m
+      [33mclass[39m=[32m"flex flex-col gap-5"[39m
+      [33mnovalidate[39m=[32m""[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"grid gap-5 sm:grid-cols-2"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5 sm:col-span-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"name"[39m
+          [36m>[39m
+            [0mTrip name[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33mautocomplete[39m=[32m"off"[39m
+            [33mclass[39m=[32m"field-input"[39m
+            [33mid[39m=[32m"name"[39m
+            [33mmaxlength[39m=[32m"80"[39m
+            [33mname[39m=[32m"name"[39m
+            [33mtype[39m=[32m"text"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5 sm:col-span-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"destination"[39m
+          [36m>[39m
+            [0mDestination[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33mautocomplete[39m=[32m"off"[39m
+            [33mclass[39m=[32m"field-input"[39m
+            [33mid[39m=[32m"destination"[39m
+            [33mmaxlength[39m=[32m"80"[39m
+            [33mname[39m=[32m"destination"[39m
+            [33mtype[39m=[32m"text"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"startDate"[39m
+          [36m>[39m
+            [0mStart date[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"relative flex gap-2"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33maria-describedby[39m=[32m"startDate-hint"[39m
+              [33mautocomplete[39m=[32m"off"[39m
+              [33mclass[39m=[32m"field-input"[39m
+              [33mid[39m=[32m"startDate"[39m
+              [33minputmode[39m=[32m"numeric"[39m
+              [33mname[39m=[32m"startDate"[39m
+              [33mplaceholder[39m=[32m"dd/mm/yyyy"[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"01/12/2026"[39m
+            [36m/>[39m
+            [36m<input[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"pointer-events-none absolute inset-0 opacity-0"[39m
+              [33mtabindex[39m=[32m"-1"[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m"2026-12-01"[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Choose start date"[39m
+              [33mclass[39m=[32m"inline-flex size-11 flex-none items-center justify-center rounded-[10px] border border-border bg-card"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"20"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"20"[39m
+              [36m>[39m
+                [36m<rect[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33mrx[39m=[32m"2"[39m
+                  [33mwidth[39m=[32m"18"[39m
+                  [33mx[39m=[32m"3"[39m
+                  [33my[39m=[32m"5"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10h18M8 3v4M16 3v4"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"sr-only"[39m
+            [33mid[39m=[32m"startDate-hint"[39m
+          [36m>[39m
+            [0mFormat: [0m
+            [0mdd/mm/yyyy[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"endDate"[39m
+          [36m>[39m
+            [0mEnd date[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"relative flex gap-2"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33maria-describedby[39m=[32m"endDate-error"[39m
+              [33maria-invalid[39m=[32m"true"[39m
+              [33mautocomplete[39m=[32m"off"[39m
+              [33mclass[39m=[32m"field-input"[39m
+              [33mid[39m=[32m"endDate"[39m
+              [33minputmode[39m=[32m"numeric"[39m
+              [33mname[39m=[32m"endDate"[39m
+              [33mplaceholder[39m=[32m"dd/mm/yyyy"[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"12/31/2026"[39m
+            [36m/>[39m
+            [36m<input[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"pointer-events-none absolute inset-0 opacity-0"[39m
+              [33mtabindex[39m=[32m"-1"[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Choose end date"[39m
+              [33mclass[39m=[32m"inline-flex size-11 flex-none items-center justify-center rounded-[10px] border border-border bg-card"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"20"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"20"[39m
+              [36m>[39m
+                [36m<rect[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33mrx[39m=[32m"2"[39m
+                  [33mwidth[39m=[32m"18"[39m
+                  [33mx[39m=[32m"3"[39m
+                  [33my[39m=[32m"5"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10h18M8 3v4M16 3v4"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-sm text-danger"[39m
+            [33mid[39m=[32m"endDate-error"[39m
+          [36m>[39m
+            [0mEnter an end date[0m
+          [36m</p>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"flex flex-wrap items-center gap-4"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button-primary"[39m
+          [33mtype[39m=[32m"submit"[39m
+        [36m>[39m
+          [0mCreate trip[0m
+        [36m</button>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"link"[39m
+          [33mhref[39m=[32m"/trips"[39m
+        [36m>[39m
+          [0mCancel[0m
+        [36m</a>[39m
+      [36m</div>[39m
+    [36m</form>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<form[39m
+      [33mclass[39m=[32m"flex flex-col gap-5"[39m
+      [33mnovalidate[39m=[32m""[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"grid gap-5 sm:grid-cols-2"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5 sm:col-span-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"name"[39m
+          [36m>[39m
+            [0mTrip name[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33mautocomplete[39m=[32m"off"[39m
+            [33mclass[39m=[32m"field-input"[39m
+            [33mid[39m=[32m"name"[39m
+            [33mmaxlength[39m=[32m"80"[39m
+            [33mname[39m=[32m"name"[39m
+            [33mtype[39m=[32m"text"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5 sm:col-span-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"destination"[39m
+          [36m>[39m
+            [0mDestination[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33mautocomplete[39m=[32m"off"[39m
+            [33mclass[39m=[32m"field-input"[39m
+            [33mid[39m=[32m"destination"[39m
+            [33mmaxlength[39m=[32m"80"[39m
+            [33mname[39m=[32m"destination"[39m
+            [33mtype[39m=[32m"text"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"startDate"[39m
+          [36m>[39m
+            [0mStart date[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"relative flex gap-2"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33maria-describedby[39m=[32m"startDate-hint"[39m
+              [33mautocomplete[39m=[32m"off"[39m
+              [33mclass[39m=[32m"field-input"[39m
+              [33mid[39m=[32m"startDate"[39m
+              [33minputmode[39m=[32m"numeric"[39m
+              [33mname[39m=[32m"startDate"[39m
+              [33mplaceholder[39m=[32m"dd/mm/yyyy"[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"01/12/2026"[39m
+            [36m/>[39m
+            [36m<input[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"pointer-events-none absolute inset-0 opacity-0"[39m
+              [33mtabindex[39m=[32m"-1"[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m"2026-12-01"[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Choose start date"[39m
+              [33mclass[39m=[32m"inline-flex size-11 flex-none items-center justify-center rounded-[10px] border border-border bg-card"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"20"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"20"[39m
+              [36m>[39m
+                [36m<rect[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33mrx[39m=[32m"2"[39m
+                  [33mwidth[39m=[32m"18"[39m
+                  [33mx[39m=[32m"3"[39m
+                  [33my[39m=[32m"5"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10h18M8 3v4M16 3v4"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"sr-only"[39m
+            [33mid[39m=[32m"startDate-hint"[39m
+          [36m>[39m
+            [0mFormat: [0m
+            [0mdd/mm/yyyy[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"endDate"[39m
+          [36m>[39m
+            [0mEnd date[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"relative flex gap-2"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33maria-describedby[39m=[32m"endDate-error"[39m
+              [33maria-invalid[39m=[32m"true"[39m
+              [33mautocomplete[39m=[32m"off"[39m
+              [33mclass[39m=[32m"field-input"[39m
+              [33mid[39m=[32m"endDate"[39m
+              [33minputmode[39m=[32m"numeric"[39m
+              [33mname[39m=[32m"endDate"[39m
+              [33mplaceholder[39m=[32m"dd/mm/yyyy"[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"12/31/2026"[39m
+            [36m/>[39m
+            [36m<input[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"pointer-events-none absolute inset-0 opacity-0"[39m
+              [33mtabindex[39m=[32m"-1"[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Choose end date"[39m
+              [33mclass[39m=[32m"inline-flex size-11 flex-none items-center justify-center rounded-[10px] border border-border bg-card"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"20"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"20"[39m
+              [36m>[39m
+                [36m<rect[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33mrx[39m=[32m"2"[39m
+                  [33mwidth[39m=[32m"18"[39m
+                  [33mx[39m=[32m"3"[39m
+                  [33my[39m=[32m"5"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10h18M8 3v4M16 3v4"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-sm text-danger"[39m
+            [33mid[39m=[32m"endDate-error"[39m
+          [36m>[39m
+            [0mEnter an end date[0m
+          [36m</p>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"flex flex-wrap items-center gap-4"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button-primary"[39m
+          [33mtype[39m=[32m"submit"[39m
+        [36m>[39m
+          [0mCreate trip[0m
+        [36m</button>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"link"[39m
+          [33mhref[39m=[32m"/trips"[39m
+        [36m>[39m
+          [0mCancel[0m
+        [36m</a>[39m
+      [36m</div>[39m
+    [36m</form>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/features/trip/ui/TripForm.test.tsx:91:25
+     89|     submit();
+     90|
+     91|     expect(await screen.findByText("Enter the date as dd/mm/yyyy, for …
+       |                         ^
+     92|     expect(screen.getByLabelText("End date")).toHaveAttribute("aria-in…
+     93|     expect(await repository.list()).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  src/features/trip/ui/TripForm.test.tsx > TripForm > asks for dd/mm/yyyy when a date is typed as an impossible day, and saves nothing
+TestingLibraryElementError: Unable to find an element with the text: Enter the date as dd/mm/yyyy, for example 01/12/2026. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<form[39m
+      [33mclass[39m=[32m"flex flex-col gap-5"[39m
+      [33mnovalidate[39m=[32m""[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"grid gap-5 sm:grid-cols-2"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5 sm:col-span-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"name"[39m
+          [36m>[39m
+            [0mTrip name[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33mautocomplete[39m=[32m"off"[39m
+            [33mclass[39m=[32m"field-input"[39m
+            [33mid[39m=[32m"name"[39m
+            [33mmaxlength[39m=[32m"80"[39m
+            [33mname[39m=[32m"name"[39m
+            [33mtype[39m=[32m"text"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5 sm:col-span-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"destination"[39m
+          [36m>[39m
+            [0mDestination[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33mautocomplete[39m=[32m"off"[39m
+            [33mclass[39m=[32m"field-input"[39m
+            [33mid[39m=[32m"destination"[39m
+            [33mmaxlength[39m=[32m"80"[39m
+            [33mname[39m=[32m"destination"[39m
+            [33mtype[39m=[32m"text"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"startDate"[39m
+          [36m>[39m
+            [0mStart date[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"relative flex gap-2"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33maria-describedby[39m=[32m"startDate-hint"[39m
+              [33mautocomplete[39m=[32m"off"[39m
+              [33mclass[39m=[32m"field-input"[39m
+              [33mid[39m=[32m"startDate"[39m
+              [33minputmode[39m=[32m"numeric"[39m
+              [33mname[39m=[32m"startDate"[39m
+              [33mplaceholder[39m=[32m"dd/mm/yyyy"[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"01/12/2026"[39m
+            [36m/>[39m
+            [36m<input[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"pointer-events-none absolute inset-0 opacity-0"[39m
+              [33mtabindex[39m=[32m"-1"[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m"2026-12-01"[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Choose start date"[39m
+              [33mclass[39m=[32m"inline-flex size-11 flex-none items-center justify-center rounded-[10px] border border-border bg-card"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"20"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"20"[39m
+              [36m>[39m
+                [36m<rect[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33mrx[39m=[32m"2"[39m
+                  [33mwidth[39m=[32m"18"[39m
+                  [33mx[39m=[32m"3"[39m
+                  [33my[39m=[32m"5"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10h18M8 3v4M16 3v4"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"sr-only"[39m
+            [33mid[39m=[32m"startDate-hint"[39m
+          [36m>[39m
+            [0mFormat: [0m
+            [0mdd/mm/yyyy[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"endDate"[39m
+          [36m>[39m
+            [0mEnd date[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"relative flex gap-2"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33maria-describedby[39m=[32m"endDate-error"[39m
+              [33maria-invalid[39m=[32m"true"[39m
+              [33mautocomplete[39m=[32m"off"[39m
+              [33mclass[39m=[32m"field-input"[39m
+              [33mid[39m=[32m"endDate"[39m
+              [33minputmode[39m=[32m"numeric"[39m
+              [33mname[39m=[32m"endDate"[39m
+              [33mplaceholder[39m=[32m"dd/mm/yyyy"[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"31/02/2027"[39m
+            [36m/>[39m
+            [36m<input[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"pointer-events-none absolute inset-0 opacity-0"[39m
+              [33mtabindex[39m=[32m"-1"[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Choose end date"[39m
+              [33mclass[39m=[32m"inline-flex size-11 flex-none items-center justify-center rounded-[10px] border border-border bg-card"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"20"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"20"[39m
+              [36m>[39m
+                [36m<rect[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33mrx[39m=[32m"2"[39m
+                  [33mwidth[39m=[32m"18"[39m
+                  [33mx[39m=[32m"3"[39m
+                  [33my[39m=[32m"5"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10h18M8 3v4M16 3v4"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-sm text-danger"[39m
+            [33mid[39m=[32m"endDate-error"[39m
+          [36m>[39m
+            [0mEnter an end date[0m
+          [36m</p>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"flex flex-wrap items-center gap-4"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button-primary"[39m
+          [33mtype[39m=[32m"submit"[39m
+        [36m>[39m
+          [0mCreate trip[0m
+        [36m</button>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"link"[39m
+          [33mhref[39m=[32m"/trips"[39m
+        [36m>[39m
+          [0mCancel[0m
+        [36m</a>[39m
+      [36m</div>[39m
+    [36m</form>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<form[39m
+      [33mclass[39m=[32m"flex flex-col gap-5"[39m
+      [33mnovalidate[39m=[32m""[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"grid gap-5 sm:grid-cols-2"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5 sm:col-span-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"name"[39m
+          [36m>[39m
+            [0mTrip name[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33mautocomplete[39m=[32m"off"[39m
+            [33mclass[39m=[32m"field-input"[39m
+            [33mid[39m=[32m"name"[39m
+            [33mmaxlength[39m=[32m"80"[39m
+            [33mname[39m=[32m"name"[39m
+            [33mtype[39m=[32m"text"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5 sm:col-span-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"destination"[39m
+          [36m>[39m
+            [0mDestination[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33mautocomplete[39m=[32m"off"[39m
+            [33mclass[39m=[32m"field-input"[39m
+            [33mid[39m=[32m"destination"[39m
+            [33mmaxlength[39m=[32m"80"[39m
+            [33mname[39m=[32m"destination"[39m
+            [33mtype[39m=[32m"text"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"startDate"[39m
+          [36m>[39m
+            [0mStart date[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"relative flex gap-2"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33maria-describedby[39m=[32m"startDate-hint"[39m
+              [33mautocomplete[39m=[32m"off"[39m
+              [33mclass[39m=[32m"field-input"[39m
+              [33mid[39m=[32m"startDate"[39m
+              [33minputmode[39m=[32m"numeric"[39m
+              [33mname[39m=[32m"startDate"[39m
+              [33mplaceholder[39m=[32m"dd/mm/yyyy"[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"01/12/2026"[39m
+            [36m/>[39m
+            [36m<input[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"pointer-events-none absolute inset-0 opacity-0"[39m
+              [33mtabindex[39m=[32m"-1"[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m"2026-12-01"[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Choose start date"[39m
+              [33mclass[39m=[32m"inline-flex size-11 flex-none items-center justify-center rounded-[10px] border border-border bg-card"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"20"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"20"[39m
+              [36m>[39m
+                [36m<rect[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33mrx[39m=[32m"2"[39m
+                  [33mwidth[39m=[32m"18"[39m
+                  [33mx[39m=[32m"3"[39m
+                  [33my[39m=[32m"5"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10h18M8 3v4M16 3v4"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"sr-only"[39m
+            [33mid[39m=[32m"startDate-hint"[39m
+          [36m>[39m
+            [0mFormat: [0m
+            [0mdd/mm/yyyy[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"endDate"[39m
+          [36m>[39m
+            [0mEnd date[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"relative flex gap-2"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33maria-describedby[39m=[32m"endDate-error"[39m
+              [33maria-invalid[39m=[32m"true"[39m
+              [33mautocomplete[39m=[32m"off"[39m
+              [33mclass[39m=[32m"field-input"[39m
+              [33mid[39m=[32m"endDate"[39m
+              [33minputmode[39m=[32m"numeric"[39m
+              [33mname[39m=[32m"endDate"[39m
+              [33mplaceholder[39m=[32m"dd/mm/yyyy"[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"31/02/2027"[39m
+            [36m/>[39m
+            [36m<input[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"pointer-events-none absolute inset-0 opacity-0"[39m
+              [33mtabindex[39m=[32m"-1"[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Choose end date"[39m
+              [33mclass[39m=[32m"inline-flex size-11 flex-none items-center justify-center rounded-[10px] border border-border bg-card"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"20"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"20"[39m
+              [36m>[39m
+                [36m<rect[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33mrx[39m=[32m"2"[39m
+                  [33mwidth[39m=[32m"18"[39m
+                  [33mx[39m=[32m"3"[39m
+                  [33my[39m=[32m"5"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10h18M8 3v4M16 3v4"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-sm text-danger"[39m
+            [33mid[39m=[32m"endDate-error"[39m
+          [36m>[39m
+            [0mEnter an end date[0m
+          [36m</p>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"flex flex-wrap items-center gap-4"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button-primary"[39m
+          [33mtype[39m=[32m"submit"[39m
+        [36m>[39m
+          [0mCreate trip[0m
+        [36m</button>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"link"[39m
+          [33mhref[39m=[32m"/trips"[39m
+        [36m>[39m
+          [0mCancel[0m
+        [36m</a>[39m
+      [36m</div>[39m
+    [36m</form>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/features/trip/ui/TripForm.test.tsx:91:25
+     89|     submit();
+     90|
+     91|     expect(await screen.findByText("Enter the date as dd/mm/yyyy, for …
+       |                         ^
+     92|     expect(screen.getByLabelText("End date")).toHaveAttribute("aria-in…
+     93|     expect(await repository.list()).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  src/features/trip/ui/TripForm.test.tsx > TripForm > asks for dd/mm/yyyy when a date is typed as an ISO date, and saves nothing
+TestingLibraryElementError: Unable to find an element with the text: Enter the date as dd/mm/yyyy, for example 01/12/2026. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<form[39m
+      [33mclass[39m=[32m"flex flex-col gap-5"[39m
+      [33mnovalidate[39m=[32m""[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"grid gap-5 sm:grid-cols-2"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5 sm:col-span-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"name"[39m
+          [36m>[39m
+            [0mTrip name[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33mautocomplete[39m=[32m"off"[39m
+            [33mclass[39m=[32m"field-input"[39m
+            [33mid[39m=[32m"name"[39m
+            [33mmaxlength[39m=[32m"80"[39m
+            [33mname[39m=[32m"name"[39m
+            [33mtype[39m=[32m"text"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5 sm:col-span-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"destination"[39m
+          [36m>[39m
+            [0mDestination[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33mautocomplete[39m=[32m"off"[39m
+            [33mclass[39m=[32m"field-input"[39m
+            [33mid[39m=[32m"destination"[39m
+            [33mmaxlength[39m=[32m"80"[39m
+            [33mname[39m=[32m"destination"[39m
+            [33mtype[39m=[32m"text"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"startDate"[39m
+          [36m>[39m
+            [0mStart date[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"relative flex gap-2"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33maria-describedby[39m=[32m"startDate-hint"[39m
+              [33mautocomplete[39m=[32m"off"[39m
+              [33mclass[39m=[32m"field-input"[39m
+              [33mid[39m=[32m"startDate"[39m
+              [33minputmode[39m=[32m"numeric"[39m
+              [33mname[39m=[32m"startDate"[39m
+              [33mplaceholder[39m=[32m"dd/mm/yyyy"[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"01/12/2026"[39m
+            [36m/>[39m
+            [36m<input[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"pointer-events-none absolute inset-0 opacity-0"[39m
+              [33mtabindex[39m=[32m"-1"[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m"2026-12-01"[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Choose start date"[39m
+              [33mclass[39m=[32m"inline-flex size-11 flex-none items-center justify-center rounded-[10px] border border-border bg-card"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"20"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"20"[39m
+              [36m>[39m
+                [36m<rect[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33mrx[39m=[32m"2"[39m
+                  [33mwidth[39m=[32m"18"[39m
+                  [33mx[39m=[32m"3"[39m
+                  [33my[39m=[32m"5"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10h18M8 3v4M16 3v4"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"sr-only"[39m
+            [33mid[39m=[32m"startDate-hint"[39m
+          [36m>[39m
+            [0mFormat: [0m
+            [0mdd/mm/yyyy[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"endDate"[39m
+          [36m>[39m
+            [0mEnd date[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"relative flex gap-2"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33maria-describedby[39m=[32m"endDate-hint"[39m
+              [33mautocomplete[39m=[32m"off"[39m
+              [33mclass[39m=[32m"field-input"[39m
+              [33mid[39m=[32m"endDate"[39m
+              [33minputmode[39m=[32m"numeric"[39m
+              [33mname[39m=[32m"endDate"[39m
+              [33mplaceholder[39m=[32m"dd/mm/yyyy"[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"2026-12-01"[39m
+            [36m/>[39m
+            [36m<input[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"pointer-events-none absolute inset-0 opacity-0"[39m
+              [33mtabindex[39m=[32m"-1"[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Choose end date"[39m
+              [33mclass[39m=[32m"inline-flex size-11 flex-none items-center justify-center rounded-[10px] border border-border bg-card"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"20"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"20"[39m
+              [36m>[39m
+                [36m<rect[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33mrx[39m=[32m"2"[39m
+                  [33mwidth[39m=[32m"18"[39m
+                  [33mx[39m=[32m"3"[39m
+                  [33my[39m=[32m"5"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10h18M8 3v4M16 3v4"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"sr-only"[39m
+            [33mid[39m=[32m"endDate-hint"[39m
+          [36m>[39m
+            [0mFormat: [0m
+            [0mdd/mm/yyyy[0m
+          [36m</p>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"flex flex-wrap items-center gap-4"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button-primary"[39m
+          [33mdisabled[39m=[32m""[39m
+          [33mtype[39m=[32m"submit"[39m
+        [36m>[39m
+          [0mCreate trip[0m
+        [36m</button>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"link"[39m
+          [33mhref[39m=[32m"/trips"[39m
+        [36m>[39m
+          [0mCancel[0m
+        [36m</a>[39m
+      [36m</div>[39m
+    [36m</form>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<form[39m
+      [33mclass[39m=[32m"flex flex-col gap-5"[39m
+      [33mnovalidate[39m=[32m""[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"grid gap-5 sm:grid-cols-2"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5 sm:col-span-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"name"[39m
+          [36m>[39m
+            [0mTrip name[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33mautocomplete[39m=[32m"off"[39m
+            [33mclass[39m=[32m"field-input"[39m
+            [33mid[39m=[32m"name"[39m
+            [33mmaxlength[39m=[32m"80"[39m
+            [33mname[39m=[32m"name"[39m
+            [33mtype[39m=[32m"text"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5 sm:col-span-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"destination"[39m
+          [36m>[39m
+            [0mDestination[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33mautocomplete[39m=[32m"off"[39m
+            [33mclass[39m=[32m"field-input"[39m
+            [33mid[39m=[32m"destination"[39m
+            [33mmaxlength[39m=[32m"80"[39m
+            [33mname[39m=[32m"destination"[39m
+            [33mtype[39m=[32m"text"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"startDate"[39m
+          [36m>[39m
+            [0mStart date[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"relative flex gap-2"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33maria-describedby[39m=[32m"startDate-hint"[39m
+              [33mautocomplete[39m=[32m"off"[39m
+              [33mclass[39m=[32m"field-input"[39m
+              [33mid[39m=[32m"startDate"[39m
+              [33minputmode[39m=[32m"numeric"[39m
+              [33mname[39m=[32m"startDate"[39m
+              [33mplaceholder[39m=[32m"dd/mm/yyyy"[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"01/12/2026"[39m
+            [36m/>[39m
+            [36m<input[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"pointer-events-none absolute inset-0 opacity-0"[39m
+              [33mtabindex[39m=[32m"-1"[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m"2026-12-01"[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Choose start date"[39m
+              [33mclass[39m=[32m"inline-flex size-11 flex-none items-center justify-center rounded-[10px] border border-border bg-card"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"20"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"20"[39m
+              [36m>[39m
+                [36m<rect[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33mrx[39m=[32m"2"[39m
+                  [33mwidth[39m=[32m"18"[39m
+                  [33mx[39m=[32m"3"[39m
+                  [33my[39m=[32m"5"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10h18M8 3v4M16 3v4"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"sr-only"[39m
+            [33mid[39m=[32m"startDate-hint"[39m
+          [36m>[39m
+            [0mFormat: [0m
+            [0mdd/mm/yyyy[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex flex-col gap-1.5"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"font-medium"[39m
+            [33mfor[39m=[32m"endDate"[39m
+          [36m>[39m
+            [0mEnd date[0m
+          [36m</label>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"relative flex gap-2"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33maria-describedby[39m=[32m"endDate-hint"[39m
+              [33mautocomplete[39m=[32m"off"[39m
+              [33mclass[39m=[32m"field-input"[39m
+              [33mid[39m=[32m"endDate"[39m
+              [33minputmode[39m=[32m"numeric"[39m
+              [33mname[39m=[32m"endDate"[39m
+              [33mplaceholder[39m=[32m"dd/mm/yyyy"[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"2026-12-01"[39m
+            [36m/>[39m
+            [36m<input[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"pointer-events-none absolute inset-0 opacity-0"[39m
+              [33mtabindex[39m=[32m"-1"[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Choose end date"[39m
+              [33mclass[39m=[32m"inline-flex size-11 flex-none items-center justify-center rounded-[10px] border border-border bg-card"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"20"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"20"[39m
+              [36m>[39m
+                [36m<rect[39m
+                  [33mheight[39m=[32m"16"[39m
+                  [33mrx[39m=[32m"2"[39m
+                  [33mwidth[39m=[32m"18"[39m
+                  [33mx[39m=[32m"3"[39m
+                  [33my[39m=[32m"5"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10h18M8 3v4M16 3v4"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"sr-only"[39m
+            [33mid[39m=[32m"endDate-hint"[39m
+          [36m>[39m
+            [0mFormat: [0m
+            [0mdd/mm/yyyy[0m
+          [36m</p>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"flex flex-wrap items-center gap-4"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button-primary"[39m
+          [33mdisabled[39m=[32m""[39m
+          [33mtype[39m=[32m"submit"[39m
+        [36m>[39m
+          [0mCreate trip[0m
+        [36m</button>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"link"[39m
+          [33mhref[39m=[32m"/trips"[39m
+        [36m>[39m
+          [0mCancel[0m
+        [36m</a>[39m
+      [36m</div>[39m
+    [36m</form>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/features/trip/ui/TripForm.test.tsx:91:25
+     89|     submit();
+     90|
+     91|     expect(await screen.findByText("Enter the date as dd/mm/yyyy, for …
+       |                         ^
+     92|     expect(screen.getByLabelText("End date")).toHaveAttribute("aria-in…
+     93|     expect(await repository.list()).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  src/features/trip/ui/TripForm.test.tsx > TripForm > clears old field errors when a later save fails
+Error: [2mexpect([22m[31melement[39m[2m).not.toBeInTheDocument()[22m
+
+[31mexpected document not to contain element, found <p
+  class="text-sm text-danger"
+  id="name-error"
+>
+  Enter a trip name
+</p> instead[39m
+ ❯ src/features/trip/ui/TripForm.test.tsx:120:57
+    118|
+    119|     expect(await screen.findByRole("alert")).toBeInTheDocument();
+    120|     expect(screen.queryByText("Enter a trip name")).not.toBeInTheDocum…
+       |                                                         ^
+    121|     expect(screen.getByLabelText("Trip name")).not.toHaveAttribute("ar…
+    122|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+
+ Test Files  3 failed | 10 passed (13)
+      Tests  9 failed | 99 passed (108)
+   Start at  10:48:28
+   Duration  8.20s (environment 59%, tests 25%, setup 13%, transform 2%, import 1%)
+
+Environment  jsdom was created 13 times · 11.99s total, 59% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+
+exit=1

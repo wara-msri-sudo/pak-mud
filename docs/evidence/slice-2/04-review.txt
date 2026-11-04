@@ -1,0 +1,16 @@
+Slice 2 change review (B1-B8)
+B1 simplify: shared VersionedLocalStorageList replaces duplicated storage code (trip tests unchanged); generateId shared.
+B2 security: search results and pin text are rendered as React text only (no HTML sinks); query sent via URLSearchParams;
+   trip id in links via encodeURIComponent; external OSM link uses rel="noreferrer"; no secrets; runtime audit below.
+B3 requirements: AC1-9 mapped in handoff; decisions 0006, 0007 recorded; architecture/roadmap/CLAUDE.md updated.
+B4 testing: domain, use cases, storage (incl. trips key untouched), Nominatim adapter (params, mapping, spacing, timeout,
+   errors), components, contrast, e2e (search -> pin -> reload -> Pinned; invalid cost; failed search; unknown trip).
+B5 performance: first-load JS /trips 147.2 kB, /trips/[id] 150.8 kB gzip (budget 200 kB). One search per button press.
+B6 concurrency: search button disabled + guarded while running; pin save guarded with isSaving; save = read+write in one
+   synchronous step per tab. Two tabs don't sync lists (same as trips).
+B7 resilience: 8 s timeout covering body read; network error / non-200 / bad JSON -> clear message; corrupt or blocked
+   pin storage -> notice, never overwritten; unknown trip -> "Trip not found".
+B8 compatibility: pak-mud:trips v1 unchanged (unit test + real-app check "trips key unchanged = true"); old-trip e2e passes;
+   new key pak-mud:pins and route /trips/[id] are additive. No migration needed.
+REAL NOMINATIM: BLOCKED in this container (net::ERR_TUNNEL_CONNECTION_FAILED); app shows its "Search isn't available" message.
+found 0 vulnerabilities
