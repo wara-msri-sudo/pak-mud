@@ -127,7 +127,7 @@ Before writing any code or test, show the user the plan and ask for approval. Th
 
 1. **How:** the approach in plain words. What will change, in what order, which layers and ports are involved, and any trade-off made.
 2. **Files:** every file to create, change, rename or delete, each with a one-line reason. Mark each `new`, `change` or `delete`. Include docs, evidence and e2e files.
-3. **Test cases:** every test to be written, grouped by file. For each: its name, the acceptance criterion it covers, and the Given / When / Then in one line. Include edge cases and error paths.
+3. **Test cases:** every test to be written, grouped by file. For each: its name, the acceptance criterion it covers, and the Given / When / Then in one line. Include edge cases and error paths. Add two lines for trust in the tests: the **mutations** you will try (which conditions, values or calls, and which test should catch each) and the **idempotency** checks (double run of the suite, and any operation that can run twice).
 
 Format:
 
@@ -141,6 +141,8 @@ Files:
 Test cases:
   <test file>
     - <test name>  (AC<n>)  Given ... When ... Then ...
+Mutation plan:    <mutations to try -> test expected to fail>
+Idempotency plan: <suite run twice; operations run twice and expected result>
 Questions or risks: <anything still open, or none>
 ```
 
@@ -206,6 +208,8 @@ Run after Part A. Rerun tests after any edit made here. Checks that do not apply
 - Bug fixes have a test that fails before the fix and passes after (show both runs).
 - Edge cases and error paths are covered, not only the happy path.
 - Tests are deterministic and independent. None skipped, disabled or flaky.
+- **Mutation check (can we trust the tests?):** change the code on purpose and confirm a test fails. Use the project's mutation tool (adapter). Mutate the code this change touched: flip conditions and comparisons, change operators and constants, remove calls and early returns, return empty or wrong values. Every mutant must be killed by a test. A surviving mutant means a test is missing or too weak: fix the test, never ignore the mutant. List any equivalent mutant (same behavior) with a reason. If there is no tool, do it by hand for each acceptance criterion and show the edit and the failing test. Record mutants run, killed, survived.
+- **Idempotency check (can we rerun the tests?):** run the full relevant suite twice in a row, then once in random or reversed order if the runner supports it. Results must be identical, with no leftover data, files, storage or timers that change the second run. Tests set up and clean up their own state. Also test that any operation that may be retried or run twice (save, import, submit) gives the same result the second time, and show the double run.
 - Full relevant suite, lint and type checks pass. Report commands and results.
 
 **B5. Performance.**
@@ -277,6 +281,8 @@ diff:                 <summary or patch>
 commands_results:     <what was run and key output>
 evidence_paths:       <logs, screenshots, profiles>
 simplification:       <what was cleaned up in B1>
+mutation:             <tool or manual, mutants run / killed / survived, equivalent ones with reason>
+idempotency:          <suite run twice result, double-run operations tested>
 security_findings:    <found/fixed, or none and what was checked>
 performance:          <before/after numbers, or n/a with reason>
 concurrency:          <shared state reviewed, parallel test result, or n/a>
@@ -493,6 +499,7 @@ Copy this section into each project and fill it in. The workflow reads from here
 - Build:
 - Dependency audit:
 - Performance / profiling:
+- Mutation testing (tool and command, or manual):
 - Contract / schema diff (API schema, types, CLI snapshot):
 - Old-consumer / contract tests:
 - Migration test and rollback:
@@ -573,6 +580,8 @@ The same mistake happened: <describe>. Propose a guardrail using the ladder.
 - [ ] Build plan (how, files, test cases) shown and approved before implementing
 - [ ] Built with red / green / refactor, small commits
 - [ ] Real behavior verified with evidence
+- [ ] Mutation check: every mutant killed, none ignored
+- [ ] Idempotency check: suite run twice with the same result
 - [ ] B1-B8 done or marked n/a with reason (including backward compatibility)
 - [ ] Outcome PASS, with no checks weakened
 - [ ] Self-audit done
