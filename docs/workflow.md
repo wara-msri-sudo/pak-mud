@@ -36,6 +36,7 @@ Nothing in the stages below is tied to a language, framework, or repository. Pro
 1  Request contract            -> GATE: human approves contract
 2  Playbook
 3  Context and design          -> GATE: human decides options
+   Build plan                  -> GATE: human approves plan before any code
 4  Implement (Test first (TDD), clean code, small steps)    each step: drift check + checkpoint commit
 5  Verify
      5A Real behavior
@@ -61,6 +62,7 @@ A gate means the agent **stops and waits** for the human.
 |---|---|---|
 | Contract approval | After stage 1 | Yes for tiny tasks: state assumptions and continue |
 | Design decision | Stage 3, any architecture decision or real ambiguity | No |
+| Build plan approval | End of stage 3, before any implementation | No |
 | Risky action | Any stage | No |
 | Scope change | Any stage | No |
 | Weakening a check | Any stage | No |
@@ -120,7 +122,33 @@ Optional delegation for large tasks: split independent work across parallel agen
 
 **GATE:** human decides any architecture decision. Agent does not write code that depends on an open decision.
 
+#### Build plan (before stage 4)
+Before writing any code or test, show the user the plan and ask for approval. The plan has three parts:
+
+1. **How:** the approach in plain words. What will change, in what order, which layers and ports are involved, and any trade-off made.
+2. **Files:** every file to create, change, rename or delete, each with a one-line reason. Mark each `new`, `change` or `delete`. Include docs, evidence and e2e files.
+3. **Test cases:** every test to be written, grouped by file. For each: its name, the acceptance criterion it covers, and the Given / When / Then in one line. Include edge cases and error paths.
+
+Format:
+
+```
+Build plan
+How:
+  <approach, 3-8 lines>
+Files:
+  new     <path>  <reason>
+  change  <path>  <reason>
+Test cases:
+  <test file>
+    - <test name>  (AC<n>)  Given ... When ... Then ...
+Questions or risks: <anything still open, or none>
+```
+
+**GATE:** the agent stops and asks "Approve this plan and start implementing?" It writes no code until the human says yes. If the work later needs a file or test not in the plan, stop, show the change to the plan and ask again. Never skippable, even for tiny tasks (a tiny task gets a tiny plan).
+
 ### Stage 4. Implement (Test first (TDD), clean code, small steps)
+Start only after the human approved the build plan. Build what the plan lists.
+
 Red / green / refactor, one acceptance criterion at a time:
 1. **Red:** write or update a test for one criterion. See it fail for the right reason.
 2. **Green:** write the simplest code that passes.
@@ -438,7 +466,7 @@ Principles:
 
 - **Progress log:** a short running list (done, doing, next) that survives context resets in long tasks.
 - **Independent verifier:** a separate agent that did not write the code runs stage 5, for high-risk changes.
-- **Plan approval for large tasks:** present the slice plan and get approval before stage 3.
+- **Slice plan for large tasks:** present the order of slices and get approval before stage 3. (The build plan before stage 4 is always required.)
 
 ---
 
@@ -511,6 +539,7 @@ Follow docs/workflow.md.
 Task: <describe the change>
 Write the story and Given/When/Then acceptance criteria first and wait for my approval.
 Ask me to decide any architecture option, with pros and cons.
+Before any code, show the build plan (how, files, test cases) and ask me to approve it.
 Verify in the real app and return the handoff.
 ```
 
@@ -518,7 +547,7 @@ Verify in the real app and return the handoff.
 ```
 Follow docs/workflow.md.
 Small fix: <describe>
-State your assumptions, then implement with a test, verify, and return the handoff.
+State your assumptions, show a short build plan (how, files, test cases) and wait for my yes, then implement with a test, verify, and return the handoff.
 ```
 
 **Resume after a context reset**
@@ -541,6 +570,7 @@ The same mistake happened: <describe>. Propose a guardrail using the ladder.
 - [ ] Contract approved
 - [ ] Playbook chosen
 - [ ] Architecture decisions asked, answered, documented
+- [ ] Build plan (how, files, test cases) shown and approved before implementing
 - [ ] Built with red / green / refactor, small commits
 - [ ] Real behavior verified with evidence
 - [ ] B1-B8 done or marked n/a with reason (including backward compatibility)
