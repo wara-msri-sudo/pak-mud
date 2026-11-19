@@ -1,6 +1,6 @@
 # Roadmap
 
-Slices are built in order with [waraflow](waraflow.md). Each slice's final contract (story, criteria, design
+Slices are built in order with [workflow](workflow.md). Each slice's final contract (story, criteria, design
 decisions) is agreed with the owner when the slice starts. The drafts below are starting points, not approvals.
 
 ## Done

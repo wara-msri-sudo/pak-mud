@@ -24,4 +24,4 @@ Open http://localhost:3000.
 
 ## Docs
 
-See [docs/README.md](docs/README.md). All changes follow [docs/waraflow.md](docs/waraflow.md).
+See [docs/README.md](docs/README.md). All changes follow [docs/workflow.md](docs/workflow.md).

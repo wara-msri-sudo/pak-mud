@@ -1,4 +1,4 @@
-# waraflow: Agent Engineering Workflow (Baseline)
+# Workflow: Agent Engineering Workflow (Baseline)
 
 A project-agnostic workflow for AI coding agents. Combines agile delivery, clean code, clean architecture, human decision gates, and evidence-based verification.
 
@@ -8,9 +8,9 @@ A project-agnostic workflow for AI coding agents. Combines agile delivery, clean
 
 ## 1. How to use this baseline
 
-1. Copy this file into any project (for example `docs/waraflow.md`) or load it as a skill.
+1. Copy this file into any project (for example `docs/workflow.md`) or load it as a skill.
 2. Fill in the **Project adapter** (section 12) once per project: commands, stack, conventions.
-3. Point your agent rules file (`CLAUDE.md`, `AGENTS.md`, etc.) at it with one line: "Follow `docs/waraflow.md` for all code changes."
+3. Point your agent rules file (`CLAUDE.md`, `AGENTS.md`, etc.) at it with one line: "Follow `docs/workflow.md` for all code changes."
 4. Start tasks with the prompt in section 13.
 
 Nothing in the stages below is tied to a language, framework, or repository. Project specifics live only in the adapter.
@@ -36,6 +36,7 @@ Nothing in the stages below is tied to a language, framework, or repository. Pro
 1  Request contract            -> GATE: human approves contract
 2  Playbook
 3  Context and design          -> GATE: human decides options
+   Build plan                  -> GATE: human approves plan before any code
 4  Implement (Test first (TDD), clean code, small steps)    each step: drift check + checkpoint commit
 5  Verify
      5A Real behavior
@@ -61,6 +62,7 @@ A gate means the agent **stops and waits** for the human.
 |---|---|---|
 | Contract approval | After stage 1 | Yes for tiny tasks: state assumptions and continue |
 | Design decision | Stage 3, any architecture decision or real ambiguity | No |
+| Build plan approval | End of stage 3, before any implementation | No |
 | Risky action | Any stage | No |
 | Scope change | Any stage | No |
 | Weakening a check | Any stage | No |
@@ -120,7 +122,35 @@ Optional delegation for large tasks: split independent work across parallel agen
 
 **GATE:** human decides any architecture decision. Agent does not write code that depends on an open decision.
 
+#### Build plan (before stage 4)
+Before writing any code or test, show the user the plan and ask for approval. The plan has three parts:
+
+1. **How:** the approach in plain words. What will change, in what order, which layers and ports are involved, and any trade-off made.
+2. **Files:** every file to create, change, rename or delete, each with a one-line reason. Mark each `new`, `change` or `delete`. Include docs, evidence and e2e files.
+3. **Test cases:** every test to be written, grouped by file. For each: its name, the acceptance criterion it covers, and the Given / When / Then in one line. Include edge cases and error paths. Add two lines for trust in the tests: the **mutations** you will try (which conditions, values or calls, and which test should catch each) and the **idempotency** checks (double run of the suite, and any operation that can run twice).
+
+Format:
+
+```
+Build plan
+How:
+  <approach, 3-8 lines>
+Files:
+  new     <path>  <reason>
+  change  <path>  <reason>
+Test cases:
+  <test file>
+    - <test name>  (AC<n>)  Given ... When ... Then ...
+Mutation plan:    <mutations to try -> test expected to fail>
+Idempotency plan: <suite run twice; operations run twice and expected result>
+Questions or risks: <anything still open, or none>
+```
+
+**GATE:** the agent stops and asks "Approve this plan and start implementing?" It writes no code until the human says yes. If the work later needs a file or test not in the plan, stop, show the change to the plan and ask again. Never skippable, even for tiny tasks (a tiny task gets a tiny plan).
+
 ### Stage 4. Implement (Test first (TDD), clean code, small steps)
+Start only after the human approved the build plan. Build what the plan lists.
+
 Red / green / refactor, one acceptance criterion at a time:
 1. **Red:** write or update a test for one criterion. See it fail for the right reason.
 2. **Green:** write the simplest code that passes.
@@ -178,6 +208,8 @@ Run after Part A. Rerun tests after any edit made here. Checks that do not apply
 - Bug fixes have a test that fails before the fix and passes after (show both runs).
 - Edge cases and error paths are covered, not only the happy path.
 - Tests are deterministic and independent. None skipped, disabled or flaky.
+- **Mutation check (can we trust the tests?):** change the code on purpose and confirm a test fails. Use the project's mutation tool (adapter). Mutate the code this change touched: flip conditions and comparisons, change operators and constants, remove calls and early returns, return empty or wrong values. Every mutant must be killed by a test. A surviving mutant means a test is missing or too weak: fix the test, never ignore the mutant. List any equivalent mutant (same behavior) with a reason. If there is no tool, do it by hand for each acceptance criterion and show the edit and the failing test. Record mutants run, killed, survived.
+- **Idempotency check (can we rerun the tests?):** run the full relevant suite twice in a row, then once in random or reversed order if the runner supports it. Results must be identical, with no leftover data, files, storage or timers that change the second run. Tests set up and clean up their own state. Also test that any operation that may be retried or run twice (save, import, submit) gives the same result the second time, and show the double run.
 - Full relevant suite, lint and type checks pass. Report commands and results.
 
 **B5. Performance.**
@@ -249,6 +281,8 @@ diff:                 <summary or patch>
 commands_results:     <what was run and key output>
 evidence_paths:       <logs, screenshots, profiles>
 simplification:       <what was cleaned up in B1>
+mutation:             <tool or manual, mutants run / killed / survived, equivalent ones with reason>
+idempotency:          <suite run twice result, double-run operations tested>
 security_findings:    <found/fixed, or none and what was checked>
 performance:          <before/after numbers, or n/a with reason>
 concurrency:          <shared state reviewed, parallel test result, or n/a>
@@ -438,7 +472,7 @@ Principles:
 
 - **Progress log:** a short running list (done, doing, next) that survives context resets in long tasks.
 - **Independent verifier:** a separate agent that did not write the code runs stage 5, for high-risk changes.
-- **Plan approval for large tasks:** present the slice plan and get approval before stage 3.
+- **Slice plan for large tasks:** present the order of slices and get approval before stage 3. (The build plan before stage 4 is always required.)
 
 ---
 
@@ -465,6 +499,7 @@ Copy this section into each project and fill it in. The workflow reads from here
 - Build:
 - Dependency audit:
 - Performance / profiling:
+- Mutation testing (tool and command, or manual):
 - Contract / schema diff (API schema, types, CLI snapshot):
 - Old-consumer / contract tests:
 - Migration test and rollback:
@@ -507,29 +542,30 @@ Copy this section into each project and fill it in. The workflow reads from here
 
 **Standard task**
 ```
-Follow docs/waraflow.md.
+Follow docs/workflow.md.
 Task: <describe the change>
 Write the story and Given/When/Then acceptance criteria first and wait for my approval.
 Ask me to decide any architecture option, with pros and cons.
+Before any code, show the build plan (how, files, test cases) and ask me to approve it.
 Verify in the real app and return the handoff.
 ```
 
 **Tiny task** (contract gate skipped)
 ```
-Follow docs/waraflow.md.
+Follow docs/workflow.md.
 Small fix: <describe>
-State your assumptions, then implement with a test, verify, and return the handoff.
+State your assumptions, show a short build plan (how, files, test cases) and wait for my yes, then implement with a test, verify, and return the handoff.
 ```
 
 **Resume after a context reset**
 ```
-Follow docs/waraflow.md. Read docs/architecture.md and docs/decisions/README.md.
+Follow docs/workflow.md. Read docs/architecture.md and docs/decisions/README.md.
 Continue the task: <describe>. Current stage: <stage>. Progress log: <paste or path>.
 ```
 
 **Retrospective only**
 ```
-Follow docs/waraflow.md stage 7 for the last task.
+Follow docs/workflow.md stage 7 for the last task.
 The same mistake happened: <describe>. Propose a guardrail using the ladder.
 ```
 
@@ -541,8 +577,11 @@ The same mistake happened: <describe>. Propose a guardrail using the ladder.
 - [ ] Contract approved
 - [ ] Playbook chosen
 - [ ] Architecture decisions asked, answered, documented
+- [ ] Build plan (how, files, test cases) shown and approved before implementing
 - [ ] Built with red / green / refactor, small commits
 - [ ] Real behavior verified with evidence
+- [ ] Mutation check: every mutant killed, none ignored
+- [ ] Idempotency check: suite run twice with the same result
 - [ ] B1-B8 done or marked n/a with reason (including backward compatibility)
 - [ ] Outcome PASS, with no checks weakened
 - [ ] Self-audit done
