@@ -5,7 +5,7 @@
 - Decided by: project owner (wara-msri-sudo)
 
 ## Context
-Slice 2 saves pins (places pinned to a trip). Stored data is a compatibility surface (waraflow B8): trips saved
+Slice 2 saves pins (places pinned to a trip). Stored data is a compatibility surface (workflow B8): trips saved
 under `pak-mud:trips` v1 (decision 0004) must keep loading.
 
 ## Options considered

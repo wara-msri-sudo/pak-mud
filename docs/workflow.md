@@ -1,4 +1,4 @@
-# waraflow: Agent Engineering Workflow (Baseline)
+# Workflow: Agent Engineering Workflow (Baseline)
 
 A project-agnostic workflow for AI coding agents. Combines agile delivery, clean code, clean architecture, human decision gates, and evidence-based verification.
 
@@ -8,9 +8,9 @@ A project-agnostic workflow for AI coding agents. Combines agile delivery, clean
 
 ## 1. How to use this baseline
 
-1. Copy this file into any project (for example `docs/waraflow.md`) or load it as a skill.
+1. Copy this file into any project (for example `docs/workflow.md`) or load it as a skill.
 2. Fill in the **Project adapter** (section 12) once per project: commands, stack, conventions.
-3. Point your agent rules file (`CLAUDE.md`, `AGENTS.md`, etc.) at it with one line: "Follow `docs/waraflow.md` for all code changes."
+3. Point your agent rules file (`CLAUDE.md`, `AGENTS.md`, etc.) at it with one line: "Follow `docs/workflow.md` for all code changes."
 4. Start tasks with the prompt in section 13.
 
 Nothing in the stages below is tied to a language, framework, or repository. Project specifics live only in the adapter.
@@ -507,7 +507,7 @@ Copy this section into each project and fill it in. The workflow reads from here
 
 **Standard task**
 ```
-Follow docs/waraflow.md.
+Follow docs/workflow.md.
 Task: <describe the change>
 Write the story and Given/When/Then acceptance criteria first and wait for my approval.
 Ask me to decide any architecture option, with pros and cons.
@@ -516,20 +516,20 @@ Verify in the real app and return the handoff.
 
 **Tiny task** (contract gate skipped)
 ```
-Follow docs/waraflow.md.
+Follow docs/workflow.md.
 Small fix: <describe>
 State your assumptions, then implement with a test, verify, and return the handoff.
 ```
 
 **Resume after a context reset**
 ```
-Follow docs/waraflow.md. Read docs/architecture.md and docs/decisions/README.md.
+Follow docs/workflow.md. Read docs/architecture.md and docs/decisions/README.md.
 Continue the task: <describe>. Current stage: <stage>. Progress log: <paste or path>.
 ```
 
 **Retrospective only**
 ```
-Follow docs/waraflow.md stage 7 for the last task.
+Follow docs/workflow.md stage 7 for the last task.
 The same mistake happened: <describe>. Propose a guardrail using the ladder.
 ```
 

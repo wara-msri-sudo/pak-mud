@@ -2,7 +2,7 @@
 
 A trip planner for visitors to Thailand: pin places, then turn the pins into a day-by-day plan.
 
-**Follow [docs/waraflow.md](docs/waraflow.md) for all code changes.**
+**Follow [docs/workflow.md](docs/workflow.md) for all code changes.**
 Before designing anything, read [docs/architecture.md](docs/architecture.md) and [docs/decisions/README.md](docs/decisions/README.md).
 Next.js agent notes: @AGENTS.md
 

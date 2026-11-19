@@ -1,6 +1,6 @@
 # Docs
 
-- [waraflow.md](waraflow.md): the workflow every change follows
+- [workflow.md](workflow.md): the workflow every change follows
 - [architecture.md](architecture.md): current architecture
 - [roadmap.md](roadmap.md): slices done and planned, with drafts for later slices
 - [decisions/](decisions/README.md): decision notes
